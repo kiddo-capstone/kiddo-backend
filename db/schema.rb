@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "missions", force: :cascade do |t|
     t.string "name"
-    t.string "due_date"
+    t.date "due_date"
+    t.boolean "expired?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,8 +36,10 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "name"
     t.string "description"
     t.string "image_path"
-    t.boolean "completed"
-    t.string "response"
+    t.boolean "completed?"
+    t.string "message"
+    t.string "type"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
