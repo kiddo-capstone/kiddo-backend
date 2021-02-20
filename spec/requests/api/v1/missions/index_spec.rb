@@ -25,7 +25,6 @@ describe 'mission index api' do
     get '/api/v1/missions'
     expect(response).to be_successful
     json_response = JSON.parse(response.body, symbolize_names: true)
-    require 'pry'; binding.pry
-    expect(json_response[:data].empty?.to eq(true)
+    expect(json_response[:data].empty?).to eq(true)
   end
 end
