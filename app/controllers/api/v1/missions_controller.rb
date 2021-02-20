@@ -14,6 +14,16 @@ class Api::V1::MissionsController < ApplicationController
     end
   end
 
+  def update
+    mission = Mission.find_by(id: params[:id])
+    if mission && mission.update(mission_params)
+      json_create(mission)
+    else
+      errors = "Unable to update mission. #{mission.errors.full_messages.to_sentence}"
+      json_errors(errors, :bad_request)
+    end
+  end
+
   def destroy
     mission = Mission.find_by(id: params[:id])
     if mission
