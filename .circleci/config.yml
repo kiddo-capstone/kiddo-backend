@@ -50,3 +50,39 @@ jobs: # a collection of steps
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+  deploy:
+      docker:
+        - image: circleci/python:2.7
+      working_directory: ~/repo
+      steps:
+        - checkout
+        - run:
+            name: Install awscli
+            command: |
+              sudo pip install awsebcli --upgrade
+        - run:
+            name: Create AWS credentials manually
+            command: |
+              mkdir ~/.aws
+              touch ~/.aws/config
+              chmod 600 ~/.aws/config
+              echo "[profile eb-cli]" > ~/.aws/config
+              echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+              echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+        - run:
+            name: Deploy to EB if branch is Main
+            command: |
+              eb use circleci-beanstalk-example --profile eb-cli
+              eb deploy -v --staged --profile eb-cli
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
