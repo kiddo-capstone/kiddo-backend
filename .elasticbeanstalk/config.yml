@@ -1,17 +1,17 @@
-branch-defaults:
-  aws-deploy:
-    environment: Kiddoapi-prod
-global:
-  application_name: kiddo-api
-  branch: null
-  default_ec2_keyname: null
-  default_platform: Puma with Ruby 2.5 running on 64bit Amazon Linux
-  default_region: us-west-2
-  include_git_submodules: true
-  instance_profile: null
-  platform_name: null
-  platform_version: null
-  profile: eb-cli
-  repository: null
-  sc: git
-  workspace_type: Application
+# branch-defaults:
+#   aws-deploy:
+#     environment: Kiddoapi-prod
+# global:
+#   application_name: kiddo-api
+#   branch: null
+#   default_ec2_keyname: null
+#   default_platform: Puma with Ruby 2.5 running on 64bit Amazon Linux
+#   default_region: us-west-2
+#   include_git_submodules: true
+#   instance_profile: null
+#   platform_name: null
+#   platform_version: null
+#   profile: eb-cli
+#   repository: null
+#   sc: git
+#   workspace_type: Application
