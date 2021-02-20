@@ -104,6 +104,6 @@ jobs:
             eb status
           name: You may now use the EB CLI within this job
 workflows:
-  elastic-beanstalk-workflow:
+  kiddo-backend:
     jobs:
-      - kiddo-backend
+      - bjs-test
