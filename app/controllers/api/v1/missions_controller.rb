@@ -14,6 +14,16 @@ class Api::V1::MissionsController < ApplicationController
     end
   end
 
+  def destroy
+    mission = Mission.find_by(id: params[:id])
+    if mission
+      json_create(mission.destroy)
+    else
+      errors = "Unable to destroy mission."
+      json_errors(errors, :bad_request)
+    end
+  end
+
   private
 
   def json_create(obj)
