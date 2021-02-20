@@ -1,6 +1,6 @@
 version: 2.1 # use CircleCI 2.1
 orbs:
-  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@1.0.1
+  eb: circleci/aws-elastic-beanstalk@1.0.1
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     parallelism: 1 # run three instances of this job in parallel
