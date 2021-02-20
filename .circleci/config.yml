@@ -74,7 +74,7 @@ jobs: # a collection of steps
         - run:
             name: Deploy to EB if branch is Main
             command: |
-              eb use circleci-beanstalk-example --profile eb-cli
+              eb use kiddoapi-v --profile eb-cli
               eb deploy -v --staged --profile eb-cli
 
 workflows:

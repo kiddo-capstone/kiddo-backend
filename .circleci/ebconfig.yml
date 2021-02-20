@@ -1,8 +1,8 @@
 branch-defaults:
   develop:
-    environment: kiddo-api-dev
+    environment: kiddoapi-dev
   master:
-    environment: kiddo-api-v
+    environment: kiddoapi-v
 global:
   application_name: kiddo-api
   default_ec2_keyname: null
