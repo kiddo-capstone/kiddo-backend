@@ -1,0 +1,14 @@
+branch-defaults:
+  develop:
+    environment: kiddo-api-dev
+  master:
+    environment: kiddo-api-v
+global:
+  application_name: kiddo-api
+  default_ec2_keyname: null
+  default_platform: Puma with Ruby 2.5 running on 64bit Amazon Linux
+  default_region: us-west-2
+  include_git_submodules: true
+  profile: eb-cli
+  sc: git
+  workspace_type: Application
