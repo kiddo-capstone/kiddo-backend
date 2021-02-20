@@ -1,4 +1,6 @@
-version: 2.0 # use CircleCI 2.0
+version: 2.1 # use CircleCI 2.1
+orbs:
+  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@1.0.1
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     parallelism: 1 # run three instances of this job in parallel
@@ -50,39 +52,42 @@ jobs: # a collection of steps
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
-  deploy:
-      docker:
-        - image: circleci/python:2.7
-      working_directory: ~/repo
-      steps:
-        - checkout
-        - run:
-            name: Install awscli
-            command: |
-              sudo pip install awsebcli --upgrade
-        - run:
-            name: Create AWS credentials manually
-            command: |
-              mkdir ~/.aws
-              touch ~/.aws/config
-              chmod 600 ~/.aws/config
-              echo "[profile eb-cli]" > ~/.aws/config
-              echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
-              echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
-        - run:
-            name: Deploy to EB if branch is Main
-            command: |
-              eb use Kiddoapi-prod --profile eb-cli
-              eb deploy -v --staged --profile eb-cli
+  # deploy:
+  #     docker:
+  #       - image: circleci/python:2.7
+  #     working_directory: ~/repo
+  #     steps:
+  #       - checkout
+  #       - run:
+  #           name: Install awscli
+  #           command: |
+  #             sudo pip install awsebcli --upgrade
+  #       - run:
+  #           name: Create AWS credentials manually
+  #           command: |
+  #             mkdir ~/.aws
+  #             touch ~/.aws/config
+  #             chmod 600 ~/.aws/config
+  #             echo "[profile eb-cli]" > ~/.aws/config
+  #             echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+  #             echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+  #       - run:
+  #           name: Deploy to EB if branch is Main
+  #           command: |
+  #             eb use Kiddoapi-prod --profile eb-cli
+  #             eb deploy -v --staged --profile eb-cli
 
 workflows:
-  version: 2
-  build-deploy:
+  elastic-beanstalk-workflow:
     jobs:
       - build
-      - deploy:
+      - eb/deploy:
+          context: aws-creds
+          environment-name: kiddo-api
           filters:
             branches:
               only:
                 - main
-                - develop
+          label: version-<<pipeline.number>>
+          requires:
+            - build
