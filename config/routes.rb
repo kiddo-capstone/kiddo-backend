@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, except: :update
       resources :tasks
-      resources :missions, only: [:index, :create, :destroy]
+      resources :missions, only: [:index, :create, :destroy, :update]
     end
   end
 end
