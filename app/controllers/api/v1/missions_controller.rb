@@ -4,6 +4,16 @@ class Api::V1::MissionsController < ApplicationController
     json_create(Mission.all)
   end
 
+  def show
+    mission = Mission.find_by(id: params[:id])
+    if mission
+      json_create(mission)
+    else
+      errors = "Unable to find mission"
+      json_errors(errors, :bad_request)
+    end
+  end
+
   def create
     mission = Mission.new(mission_params)
     if mission.save
