@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 4) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "mission_tasks", force: :cascade do |t|
     t.bigint "mission_id"
     t.bigint "task_id"
+    t.string "message"
+    t.string "image_path"
+    t.boolean "completed?"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mission_id"], name: "index_mission_tasks_on_mission_id"
@@ -28,40 +31,29 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "name"
     t.date "due_date"
     t.boolean "expired?"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_missions_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "image_path"
-    t.boolean "completed?"
-    t.string "message"
     t.string "type"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_missions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "mission_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_user_missions_on_mission_id"
-    t.index ["user_id"], name: "index_user_missions_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "password_digest"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "mission_tasks", "missions"
   add_foreign_key "mission_tasks", "tasks"
-  add_foreign_key "user_missions", "missions"
-  add_foreign_key "user_missions", "users"
+  add_foreign_key "missions", "users"
 end
