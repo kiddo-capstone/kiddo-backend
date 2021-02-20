@@ -1,109 +1,35 @@
-# version: 2.0 # use CircleCI 2.0
-# jobs: # a collection of steps
-#   build: # runs not using Workflows must have a `build` job as entry point
-#     parallelism: 1 # run three instances of this job in parallel
-#     docker: # run the steps with Docker
-#       - image: circleci/ruby:2.5.3 # ...with this image as the primary container; this is where all `steps` will run
-#         environment: # environment variables for primary container
-#           BUNDLE_JOBS: 3
-#           BUNDLE_RETRY: 3
-#           BUNDLE_PATH: vendor/bundle
-#           PGHOST: 127.0.0.1
-#           PGUSER: postgres
-#           RAILS_ENV: test
-#       - image: circleci/postgres:11 # database image
-#         environment: # environment variables for database, it is kind of obvious but it is important that they match with your test config in database.yml
-#           POSTGRES_USER: postgres
-#           POSTGRES_DB: kiddo_test
-#           POSTGRES_PASSWORD: kiddo_test
-#     steps: # a collection of executable commands
-#       - checkout # special step to check out source code to working directory
-#       # Which version of bundler?
-#       - run:
-#           name: Which bundler?
-#           command: |
-#               sudo gem update --system
-#               echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-#               source $BASH_ENV
-#               gem install bundler
-#       # Restore bundle cache
-#       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-#       - run: # Install Ruby dependencies
-#           name: Bundle Install
-#           command: bundle check --path vendor/bundle || bundle install --deployment
-#       # Store bundle cache for Ruby dependencies
-#       - run:
-#           name: Wait for DB
-#           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-#       - run:
-#           name: Database setup
-#           command: bin/rails db:schema:load --trace
-#       - run:
-#           name: Run rspec in parallel
-#           command: |
-#             bundle exec rspec --profile 10 \
-#                               --format RspecJunitFormatter \
-#                               --out test_results/rspec.xml \
-#                               --format progress \
-#                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-#       # Save test results for timing analysis
-#       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-#           path: test_results
-#       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
-#   deploy:
-#       docker:
-#         - image: circleci/python:2.7
-#       working_directory: ~/repo
-#       steps:
-#         - checkout
-#         - run:
-#             name: Install awscli
-#             command: |
-#               sudo pip install awsebcli --upgrade
-#         - run:
-#             name: Create AWS credentials manually
-#             command: |
-#               mkdir ~/.aws
-#               touch ~/.aws/config
-#               chmod 600 ~/.aws/config
-#               echo "[profile eb-cli]" > ~/.aws/config
-#               echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
-#               echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
-#         - run:
-#             name: Deploy to EB if branch is Main
-#             command: |
-#               eb use Kiddoapi-prod --profile eb-cli
-#               eb deploy -v --staged --profile eb-cli
-
-# workflows:
-#   version: 2
-#   build-deploy:
-#     jobs:
-#       - build
-#       - deploy:
-#           filters:
-#             branches:
-#               only:
-#                 - main
-#                 - develop
-
-version: '2.1'
+version: 2.1
 orbs:
-  eb: circleci/aws-elastic-beanstalk@1.0.0
+  ruby: circleci/ruby@0.1.2
+
 jobs:
-  eb-demo:
+  build:
     docker:
-      - image: 'cimg/base:stable'
+      - image: circleci/ruby:2.5.3-stretch-node
+    executor: ruby/default
     steps:
       - checkout
-      - eb/setup
-      - run:
-          command: |
-            eb create my-environment
-            eb deploy my-environment
-            eb status
-          name: You may now use the EB CLI within this job
-workflows:
-  kiddo-backend:
-    jobs:
-      - bjs-test
+      - ruby/with-cache:
+        steps:
+          - run: rails db: {create,migrate}
+          - run: rspec
+          - run:
+                name: Installing deployment dependencies
+                command: |
+                  sudo apt-get -y -qq update
+                  sudo apt-get install python-pip python-dev build-essential
+                  sudo pip install --upgrade setuptools
+                  sudo pip install awsebcli --upgrade
+          - run:
+            name: Deploying
+            command: eb deploy Kiddoapi-prod
+
+    workflows:
+      build-and-test:
+        jobs:
+          - build-and-test:
+              context: aws
+              filters:
+                branches:
+                  only:
+                    - main
