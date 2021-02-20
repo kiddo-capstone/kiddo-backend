@@ -4,12 +4,24 @@ class Api::V1::MissionsController < ApplicationController
     json_create(Mission.all)
   end
 
-  private
+  def create
+    mission = Mission.new(mission_params)
+    if mission.save
+      json_create(Mission.last)
+    else
+      errors = mission.errors.full_messages.to_sentence
+      json_errors(errors, :bad_request)
+    end
+  end
 
   private
 
   def json_create(obj)
     render json: MissionSerializer.new(obj)
+  end
+
+  def mission_params
+    params.permit(:name, :due_date, :user_id)
   end
 end
 
