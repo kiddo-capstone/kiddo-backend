@@ -1,6 +1,6 @@
 branch-defaults:
   aws-deploy:
-    environment: Kiddoapi-v
+    environment: Kiddoapi-prod
 global:
   application_name: kiddo-api
   branch: null

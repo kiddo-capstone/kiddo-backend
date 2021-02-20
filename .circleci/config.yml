@@ -72,7 +72,7 @@ jobs: # a collection of steps
         - run:
             name: Deploy to EB if branch is Main
             command: |
-              eb use Kiddoapi-v --profile eb-cli
+              eb use Kiddoapi-prod --profile eb-cli
               eb deploy -v --staged --profile eb-cli
 
 workflows:
