@@ -82,9 +82,7 @@ workflows:
     jobs:
       - build
       - eb/deploy:
-          context:
-            aws_access_key_id: $AWS_ACCESS_KEY_ID
-            aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+          context: aws
           environment-name: kiddo-api
           filters:
             branches:
