@@ -3,7 +3,7 @@ jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     parallelism: 1 # run three instances of this job in parallel
     docker: # run the steps with Docker
-      - image: circleci/ruby:2.5.3 # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/ruby:2.6.3 # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
@@ -30,7 +30,7 @@ jobs: # a collection of steps
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - run: # Install Ruby dependencies
           name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
+          command: bundle _1.17.3_ install  
       # Store bundle cache for Ruby dependencies
       - run:
           name: Wait for DB
