@@ -103,10 +103,6 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-linux)
-      racc (~> 1.4)
     orderly (0.1.1)
       capybara (>= 1.1)
       rspec (>= 2.14)
@@ -200,8 +196,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-darwin-19
-  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
@@ -226,7 +220,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.4
+   1.17.3
