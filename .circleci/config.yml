@@ -30,6 +30,7 @@ jobs: # a collection of steps
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - run: # Install Ruby dependencies
           name: Bundle Install
+          command: gem install bundler -v 1.17.3  
           command: bundle _1.17.3_ install  
       # Store bundle cache for Ruby dependencies
       - run:
