@@ -76,12 +76,18 @@ body: {"name":"test", "description":"testing", "category":"test", "points":3}
 
 ###### Successful Response
 ```
-{ 'data' => { 'id' => '13',
-              'type' => 'task',
-              'attributes' => { 'name' => 'EQ Level up',
-                                'description' => 'Say something kind',
-                                'category' => 'EQ',
-                                'points' => '100' } } }
+{
+    "data": {
+        "id": "4",
+        "type": "task",
+        "attributes": {
+            "name": "test",
+            "description": "testing",
+            "category": "test",
+            "points": 3
+        }
+    }
+}
 ```
 ###### Unsuccessful Response
 ```
