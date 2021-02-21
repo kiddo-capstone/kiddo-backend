@@ -8,7 +8,8 @@
 
 ###### Request Structure
 ```
-{"name"=>"Weekly chores", "due_date"=>"2001-02-03", "user_id"=>515}
+headers: 'CONTENT_TYPE' => 'application/json'
+body: {"name"=>"Weekly chores", "due_date"=>"2001-02-03", "user_id"=>515}
 ```
 
 ###### Successful Response
