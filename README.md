@@ -91,7 +91,12 @@ body: {"name":"test", "description":"testing", "category":"test", "points":3}
 ```
 ###### Unsuccessful Response
 ```
-{"data"=>{"errors"=>"Name can't be blank", "status"=>"bad_request"}}
+{
+    "data": {
+        "errors": "Name can't be blank",
+        "status": 400
+    }
+}
 ```
 ##### Index (`GET /api/v1/tasks`)
 
