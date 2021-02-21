@@ -5,7 +5,7 @@
 
 - [Overview](#overview)
 - [Techstack](#techstack)
-- [API Contracts](#api_contracts)
+- [API Contracts](#api-contracts)
 - [Schema](#schema)
 - [Contributors](#contributors)
 
