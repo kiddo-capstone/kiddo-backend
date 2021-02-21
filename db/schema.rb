@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "missions", force: :cascade do |t|
     t.string "name"
     t.date "due_date"
-    t.boolean "expired?"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
