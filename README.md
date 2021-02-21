@@ -81,9 +81,7 @@ body: {"name"=>"EQ Level up", "description"=>"Say something kind", "category"=>"
               'attributes' => { 'name' => 'EQ Level up',
                                 'description' => 'Say something kind',
                                 'category' => 'EQ',
-                                'points' => '100',
-                                'created_at' => '2021-02-21T04:05:24.749Z',
-                                'updated_at' => '2021-02-21T04:05:24.749Z' } } }
+                                'points' => '100' } } }
 ```
 ###### Unsuccessful Response
 ```
@@ -99,17 +97,13 @@ body: {"name"=>"EQ Level up", "description"=>"Say something kind", "category"=>"
      'attributes' => { 'name' => 'EQ Level up',
                        'description' => 'Say something kind',
                        'category' => 'EQ',
-                       'points' => '100',
-                       'created_at' => '2021-02-21T04:05:24.749Z',
-                       'updated_at' => '2021-02-21T04:05:24.749Z' } } },
+                       'points' => '100' } } },
    { 'id' => '27',
      'type' => 'task',
      'attributes' => { 'name' => 'IQ Level up',
                        'description' => 'Conquer homework',
                        'category' => 'IQ',
-                       'points' => '75',
-                       'created_at' => '2021-02-21T04:05:24.749Z',
-                       'updated_at' => '2021-02-21T04:05:24.749Z' } } }] }
+                       'points' => '75'} } }] }
 ```
 
 ## Schema
