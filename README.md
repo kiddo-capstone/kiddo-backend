@@ -71,7 +71,7 @@ body: {"name"=>"Weekly chores", "due_date"=>"2001-02-03", "user_id"=>515}
 ###### Request Structure
 ```
 headers: 'CONTENT_TYPE' => 'application/json'
-body: {"name"=>"EQ Level up", "description"=>"Say something kind", "category"=>"EQ", "points"=>100}
+body: {"name":"test", "description":"testing", "category":"test", "points":3}
 ```
 
 ###### Successful Response
@@ -91,19 +91,50 @@ body: {"name"=>"EQ Level up", "description"=>"Say something kind", "category"=>"
 
 ###### Successful Response
 ```
-{ 'data' =>
-  [{ 'id' => '13',
-     'type' => 'task',
-     'attributes' => { 'name' => 'EQ Level up',
-                       'description' => 'Say something kind',
-                       'category' => 'EQ',
-                       'points' => '100' } } },
-   { 'id' => '27',
-     'type' => 'task',
-     'attributes' => { 'name' => 'IQ Level up',
-                       'description' => 'Conquer homework',
-                       'category' => 'IQ',
-                       'points' => '75'} } }] }
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "task",
+            "attributes": {
+                "name": "EQ level up",
+                "description": "Say something kind",
+                "category": "EQ",
+                "points": 100
+            }
+        },
+        {
+            "id": "2",
+            "type": "task",
+            "attributes": {
+                "name": "IQ level up",
+                "description": "Conquer homework",
+                "category": "IQ",
+                "points": 50
+            }
+        },
+        {
+            "id": "3",
+            "type": "task",
+            "attributes": {
+                "name": "Special",
+                "description": "Make your bed",
+                "category": "Misc",
+                "points": 1337
+            }
+        },
+        {
+            "id": "4",
+            "type": "task",
+            "attributes": {
+                "name": "test",
+                "description": "testing",
+                "category": "test",
+                "points": 3
+            }
+        }
+    ]
+}
 ```
 
 ## Schema
