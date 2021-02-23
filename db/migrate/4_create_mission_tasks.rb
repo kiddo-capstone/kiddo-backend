@@ -5,7 +5,7 @@ class CreateMissionTasks < ActiveRecord::Migration[5.2]
       t.references :task, foreign_key: true
       t.string :message
       t.string :image_path
-      t.boolean :completed?
+      t.boolean :is_completed 
       t.timestamps
     end
   end
