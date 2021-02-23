@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resources :users, except: :update
       resources :tasks
       resources :missions
+
+      get 'missions/:id/tasks', to: 'mission_tasks#index'
     end
   end
 end
