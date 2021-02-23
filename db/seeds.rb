@@ -27,16 +27,16 @@ mission_task_11 = MissionTask.create(mission_id: mission_1.id,
                                     task_id: task_1.id, 
                                     message: "I'm Baaack!",
                                     image_path: '', 
-                                    completed?: false)
+                                    is_completed: false)
 
 mission_task_12 = MissionTask.create(mission_id: mission_1.id, 
                                     task_id: task_2.id, 
                                     message: 'Nailed it!',
                                     image_path: '', 
-                                    completed?: true)
+                                    is_completed: true)
 
 
 mission_task_2 = MissionTask.create(mission_id: mission_2.id, task_id: task_2.id, message: 'Dog ate my homework',
-                                    image_path: '', completed?: true)
+                                    image_path: '', is_completed: true)
 mission_task_3 = MissionTask.create(mission_id: mission_3.id, task_id: task_3.id, message: 'This too shall pass',
-                                    image_path: '', completed?: false)
+                                    image_path: '', is_completed: false)
