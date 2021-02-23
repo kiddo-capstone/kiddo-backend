@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       resources :missions
 
       get 'missions/:id/tasks', to: 'mission_tasks#index'
-      resources :mission_tasks, except: :index
     end
   end
 end
