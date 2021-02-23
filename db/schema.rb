@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.bigint "task_id"
     t.string "message"
     t.string "image_path"
-    t.boolean "completed?"
+    t.boolean "is_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mission_id"], name: "index_mission_tasks_on_mission_id"
