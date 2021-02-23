@@ -13,6 +13,5 @@ describe 'it can return a missions task with task details' do
     expect(response).to be_successful
 
     body = JSON.parse(response.body, symbolize_names: true)
-    require 'pry'; binding.pry
   end
 end
