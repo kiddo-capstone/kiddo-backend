@@ -5,7 +5,7 @@ class Mission < ApplicationRecord
   validates_presence_of :name, :due_date, :user_id
 
   def self.get_tasks(id)
-    Mission.find(params[:id])
+    Mission.find(id)
                    .tasks
                    .select("mission_tasks.id,
                             mission_tasks.mission_id,
