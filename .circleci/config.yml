@@ -66,6 +66,7 @@ jobs: # a collection of steps
           POSTGRES_DB: kiddo_test
           POSTGRES_PASSWORD: kiddo_test
     steps:
+      - checkout
       - run: bash .circleci/setup-heroku.sh
       - add_ssh_keys:
           fingerprints:
