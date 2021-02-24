@@ -1,9 +1,18 @@
 class Api::V1::MissionTasksController < ApplicationController
 
- 
+  def create 
+    mission_task = MissionTask.new(mission_task_params)
+    if mission_task.save
+      render json: MissionTaskSerializer.new(mission_task)
+    else 
+      errors = mission_task.errors.full_messages.to_sentence
+      json_errors(errors, :bad_request)
+    end
+  end 
+
+
   def index
     tasks = Mission.get_tasks(params[:id])
-
     if tasks
       render json: MissionTaskListSerializer.new(tasks)
     else
