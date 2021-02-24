@@ -97,15 +97,11 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.3)
+    minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     orderly (0.1.1)
       capybara (>= 1.1)
@@ -150,7 +146,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (2.0.3)
+    regexp_parser (2.1.1)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -202,8 +198,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-darwin-19
-  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
@@ -232,4 +226,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   2.2.4
+   2.1.2
