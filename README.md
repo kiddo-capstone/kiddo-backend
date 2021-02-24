@@ -63,22 +63,6 @@
 }
 ```
 
-
-##### Show (`GET /api/vi/users/1`)
-###### Successful Response
-```
-{
-    "data": {
-        "id": "1",
-        "type": "user",
-        "attributes": {
-            "name": "Calvin",
-            "email": "Calvin@example.com"
-        }
-    }
-}
-```
-
 ##### Create (`POST /api/vi/users`)
 ###### Request Structure
 
