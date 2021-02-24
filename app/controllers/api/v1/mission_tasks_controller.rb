@@ -18,13 +18,8 @@ class Api::V1::MissionTasksController < ApplicationController
       mission_task.update(mission_task_params)
       render json: { message: 'sucessfully updated mission task!' }
     else 
-      render json: { data: { errors:
-        task.
-        errors.
-        full_messages.
-        to_sentence,
-        status: 400 } },
-        status: :bad_request
+      errors = "mission task does not exist."
+      json_errors(errors, :bad_request)
     end
   end 
 
