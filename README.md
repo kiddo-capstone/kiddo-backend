@@ -22,13 +22,98 @@
 
 ## API Contracts
 
+#### Users
+##### Index (`GET /api/vi/users`)
+###### Successful Response
+```
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "user",
+            "attributes": {
+                "name": "Calvin",
+                "email": "Calvin@example.com"
+            }
+        },
+        {
+            "id": "2",
+            "type": "user",
+            "attributes": {
+                "name": "Hobbes",
+                "email": "Hobbes@example.com"
+            }
+        }
+    ]
+}
+```
+
+##### Show (`GET /api/vi/users/1`)
+###### Successful Response
+```
+{
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "name": "Calvin",
+            "email": "Calvin@example.com"
+        }
+    }
+}
+```
+
+
+##### Show (`GET /api/vi/users/1`)
+###### Successful Response
+```
+{
+    "data": {
+        "id": "1",
+        "type": "user",
+        "attributes": {
+            "name": "Calvin",
+            "email": "Calvin@example.com"
+        }
+    }
+}
+```
+
+##### Create (`POST /api/vi/users`)
+###### Request Structure
+
+```
+headers: 'CONTENT_TYPE' => 'application/json'
+body: {"name": "John", "email": "John@example.com"}
+```
+###### Successful Response
+```
+{
+    "data": {
+        "id": "3",
+        "type": "user",
+        "attributes": {
+            "name": "John",
+            "email": "John@example.com"
+        }
+    }
+}
+```
+
+##### DESTROY (`DELETE /api/vi/users/1`)
+
+###### Successful Response
+```
+204 Response No Content
+```
+
 #### Missions
 ##### Create (`POST /api/v1/missions`)
 
 ###### Request Structure
 ```
 headers: 'CONTENT_TYPE' => 'application/json'
-body: {"name"=>"Weekly chores", "due_date"=>"2001-02-03", "user_id"=>515}
+body: {"name": "Weekly chores", "due_date": "2001-02-03", "user_id"=>515}
 ```
 
 ###### Successful Response
