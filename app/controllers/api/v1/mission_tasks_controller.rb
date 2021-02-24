@@ -1,9 +1,14 @@
 class Api::V1::MissionTasksController < ApplicationController
 
+
+  def show
+    json_create(MissionTask.find(params[:id]))
+  end
+
   def create 
     mission_task = MissionTask.new(mission_task_params)
     if mission_task.save
-      render json: MissionTaskSerializer.new(mission_task)
+      json_create(mission_task)
     else 
       errors = mission_task.errors.full_messages.to_sentence
       json_errors(errors, :bad_request)
@@ -32,8 +37,16 @@ class Api::V1::MissionTasksController < ApplicationController
     end
   end 
 
+  def destroy
+    MissionTask.destroy(params[:id])
+  end 
+
 
   private 
+
+  def json_create(mission_task)
+    render json: MissionTaskSerializer.new(mission_task)
+  end
 
   def mission_task_params
     params.permit(:is_completed, :message, :mission_id, :task_id, :image_path)
