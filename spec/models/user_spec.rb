@@ -10,4 +10,15 @@ RSpec.describe User, type: :model do
   describe 'relationships' do
     it {should have_many(:missions)}
   end
+
+  describe "#invite" do
+    it "enqueues sending the invitation" do
+      allow(SendNewUserInvitationJob).to receive(:perform_later)
+      user = build(:user)
+
+      user.invite
+
+      expect(SendNewUserInvitationJob).to have_received(:perform_later)
+    end
+  end
 end
