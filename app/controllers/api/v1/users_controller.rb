@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :auth_check, :except => [:create]
   def index
     json_create(User.all)
   end
