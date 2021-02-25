@@ -1,10 +1,21 @@
 require 'rails_helper'
 
 describe 'mission destroy api' do
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+    @headers = { 'CONTENT_TYPE' => 'application/json'}
+    @body = {
+             email: @calvin.email,
+             auth_token: @calvin.auth_token
+            }
+  end
+
   it 'can destroy a mission' do
     mission = create(:mission)
     expect(Mission.all.count).to eq(1)
-    delete "/api/v1/missions/#{mission.id}"
+    delete "/api/v1/missions/#{mission.id}", headers: @headers, params: JSON.generate(@body)
     expect(response).to be_successful
     body = JSON.parse(response.body, symbolize_names: true)
     expect(Mission.all.count).to eq(0)
@@ -14,9 +25,9 @@ describe 'mission destroy api' do
     expect{ Mission.find(mission.id) }.to raise_error(ActiveRecord::RecordNotFound)
   end
   it "it cannot destroy mission if it can't find it" do
-    
+
     expect(Mission.all.count).to eq(0)
-    delete "/api/v1/missions/2"
+    delete "/api/v1/missions/2", headers: @headers, params: JSON.generate(@body)
     expect(response.status).to eq(400)
     expect(Mission.all.count).to eq(0)
     body = JSON.parse(response.body, symbolize_names: true)
