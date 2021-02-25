@@ -1,7 +1,18 @@
 require 'rails_helper'
 
 describe 'mission task show api' do
-  it 'returns current mission task' do
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+    @headers = { 'CONTENT_TYPE' => 'application/json'}
+    @body = {
+             email: @calvin.email,
+             auth_token: @calvin.auth_token
+            }
+  end
+
+  xit 'returns current mission task' do
     mission = create(:mission)
     task1, task2, task3, task4 = create_list(:task, 4)
     mission.tasks << task1
@@ -10,7 +21,7 @@ describe 'mission task show api' do
     mission.tasks << task4
     mission_task = mission.mission_tasks.last
 
-    get "/api/v1/mission_tasks/#{mission_task.id}"
+    get "/api/v1/mission_tasks/#{mission_task.id}", headers: @headers, params: @body
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
     expect(response).to be_successful
