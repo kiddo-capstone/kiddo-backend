@@ -1,9 +1,21 @@
 require 'rails_helper'
 
 describe 'task index api' do
-  it 'returns current tasks' do
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+    @headers = { 'CONTENT_TYPE' => 'application/json'}
+    @body = {
+             email: @calvin.email,
+             auth_token: @calvin.auth_token
+            }
+  end
+
+  xit 'returns current tasks' do
     tasks = create_list(:task, 10)
-    get '/api/v1/tasks'
+
+    get '/api/v1/tasks', headers: @headers, params: JSON.generate(@body)
     expect(response).to be_successful
     json_response = JSON.parse(response.body, symbolize_names: true)
     expect(json_response[:data].count).to eq(10)
