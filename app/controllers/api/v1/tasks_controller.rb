@@ -1,4 +1,6 @@
 class Api::V1::TasksController < ApplicationController
+  before_action :auth_check
+
   def index
     json_create(Task.all)
   end
