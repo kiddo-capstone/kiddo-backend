@@ -30,4 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  user_mailer:
+    invite:
+      subject: Welcome to Kiddo!
+      body: You have sucessfully signed up to the Kiddo App! 
