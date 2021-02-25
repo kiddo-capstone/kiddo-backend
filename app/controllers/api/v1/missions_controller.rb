@@ -1,5 +1,6 @@
 class Api::V1::MissionsController < ApplicationController
-
+  before_action :auth_check
+  
   def index
     json_create(Mission.all)
   end
@@ -54,4 +55,3 @@ class Api::V1::MissionsController < ApplicationController
     params.permit(:name, :due_date, :user_id)
   end
 end
-
