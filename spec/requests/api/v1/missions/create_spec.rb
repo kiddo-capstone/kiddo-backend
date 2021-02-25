@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'mission create api' do
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+  end
+
   it 'create a mission' do
     allow(Date).to receive(:today).and_return Date.new(2001, 2, 3)
     user = create(:user)
@@ -8,7 +14,9 @@ describe 'mission create api' do
     mission = {
       name: 'Weekly chores',
       due_date: Date.today,
-      user_id: user.id
+      user_id: user.id,
+      email: @calvin.email,
+      auth_token: @calvin.auth_token
     }
     expect(Mission.all.count).to eq(0)
     headers = { 'CONTENT_TYPE' => 'application/json' }
@@ -28,7 +36,9 @@ describe 'mission create api' do
 
     mission = {
       due_date: Date.today,
-      user_id: user.id
+      user_id: user.id,
+      email: @calvin.email,
+      auth_token: @calvin.auth_token
     }
     expect(Mission.all.count).to eq(0)
     headers = { 'CONTENT_TYPE' => 'application/json' }
@@ -46,7 +56,9 @@ describe 'mission create api' do
 
     mission = {
       name: "My chore list",
-      user_id: user.id
+      user_id: user.id,
+      email: @calvin.email,
+      auth_token: @calvin.auth_token
     }
     expect(Mission.all.count).to eq(0)
     headers = { 'CONTENT_TYPE' => 'application/json' }
@@ -62,12 +74,16 @@ describe 'mission create api' do
 
     mission1 = {
       name: "My chore list",
-      due_date: Date.today
+      due_date: Date.today,
+      email: @calvin.email,
+      auth_token: @calvin.auth_token
     }
     mission2 = {
       name: "My chore list",
       due_date: Date.today,
-      user_id: 2
+      user_id: 2,
+      email: @calvin.email,
+      auth_token: @calvin.auth_token
     }
     expect(Mission.all.count).to eq(0)
     headers = { 'CONTENT_TYPE' => 'application/json' }
