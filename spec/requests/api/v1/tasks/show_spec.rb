@@ -1,11 +1,20 @@
 require 'rails_helper'
 
 describe 'task show api' do
-  it 'returns current task' do
-    create(:task)
-    task = Task.last
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+    @headers = { 'CONTENT_TYPE' => 'application/json'}
+    @task = create(:task)
+    @body = {
+             email: @calvin.email,
+             auth_token: @calvin.auth_token
+            }
+  end
 
-    get "/api/v1/tasks/#{task.id}"
+  xit 'returns current task' do
+    get "/api/v1/tasks/#{@task.id}", headers: @headers, params: @body
     expect(response).to be_successful
     json_response = JSON.parse(response.body, symbolize_names: true)
     expect(json_response.count).to eq(1)
