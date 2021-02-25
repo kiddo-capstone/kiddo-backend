@@ -14,6 +14,7 @@ class Api::V1::UsersController < ApplicationController
       user = User.new(user_params)
       if user.save
         json_create(user)
+        described_class.invite(user)
       else
         render json: { data: { errors: user.errors.full_messages.to_sentence, status: 400 } },
                status: :bad_request
