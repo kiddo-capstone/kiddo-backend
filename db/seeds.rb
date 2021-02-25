@@ -12,8 +12,8 @@ User.destroy_all
 Task.destroy_all
 
 
-user_1 = User.create(name: 'Calvin', email: 'Calvin@example.com')
-user_2 = User.create(name: 'Hobbes', email: 'Hobbes@example.com')
+user_1 = User.create(name: 'Calvin', email: 'Calvin@example.com', auth_token: SecureRandom.uuid)
+user_2 = User.create(name: 'Hobbes', email: 'Hobbes@example.com', auth_token: SecureRandom.uuid)
 
 mission_1 = Mission.create(name: 'Independence Day', due_date: Time.now + 1.day, user_id: user_1.id)
 mission_2 = Mission.create(name: "Doom's Day", due_date: Time.now - 1.day, user_id: user_1.id)
@@ -23,16 +23,16 @@ task_1 = Task.create(name: 'EQ level up', description: 'Say something kind', cat
 task_2 = Task.create(name: 'IQ level up', description: 'Conquer homework', category: 'IQ', points: 50)
 task_3 = Task.create(name: 'Special', description: 'Make your bed', category: 'Misc', points: 1337)
 
-mission_task_11 = MissionTask.create(mission_id: mission_1.id, 
-                                    task_id: task_1.id, 
+mission_task_11 = MissionTask.create(mission_id: mission_1.id,
+                                    task_id: task_1.id,
                                     message: "I'm Baaack!",
-                                    image_path: '', 
+                                    image_path: '',
                                     is_completed: false)
 
-mission_task_12 = MissionTask.create(mission_id: mission_1.id, 
-                                    task_id: task_2.id, 
+mission_task_12 = MissionTask.create(mission_id: mission_1.id,
+                                    task_id: task_2.id,
                                     message: 'Nailed it!',
-                                    image_path: '', 
+                                    image_path: '',
                                     is_completed: true)
 
 
