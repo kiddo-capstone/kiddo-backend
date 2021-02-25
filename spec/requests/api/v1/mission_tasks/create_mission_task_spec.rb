@@ -1,13 +1,24 @@
 require 'rails_helper'
 
 describe 'mission tasks' do
+  before(:each) do
+    @calvin = User.create(name: 'Calvin',
+                          email: 'Calvin@example.com',
+                          auth_token: SecureRandom.uuid)
+
+    @body = { mission_id: create(:mission).id,
+             task_id: create(:task).id,
+             email: @calvin.email,
+             auth_token: @calvin.auth_token }
+
+    @headers = { 'CONTENT_TYPE' => 'application/json' }
+  end
+
   it 'can create a mission task' do
     mission = create(:mission)
     task_1 = create(:task)
 
-    body = { mission_id: mission.id, task_id: task_1.id }
-    headers = { 'CONTENT_TYPE' => 'application/json' }
-    post '/api/v1/mission_tasks', headers: headers, params: body.to_json
+    post '/api/v1/mission_tasks', headers: @headers, params: @body.to_json
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
     expect(json_body).to have_key(:data)
@@ -32,9 +43,12 @@ describe 'mission tasks' do
     mission = create(:mission)
     task_1 = create(:task)
 
-    body = { mission_id: '', task_id: task_1.id }
-    headers = { 'CONTENT_TYPE' => 'application/json' }
-    post '/api/v1/mission_tasks', headers: headers, params: body.to_json
+    body = { mission_id: '',
+             task_id: task_1.id,
+             email: @calvin.email,
+             auth_token: @calvin.auth_token }
+
+    post '/api/v1/mission_tasks', headers: @headers, params: body.to_json
     expect(response).to_not be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
     expect(json_body).to have_key(:data)
@@ -43,13 +57,17 @@ describe 'mission tasks' do
     expect(json_body[:data]).to have_key(:status)
     expect(json_body[:data][:status]).to eq("bad_request")
   end
-  
+
   it 'gets error code when missing task id' do
     mission = create(:mission)
     task_1 = create(:task)
-    body = { mission_id: mission.id, task_id: ''}
-    headers = { 'CONTENT_TYPE' => 'application/json' }
-    post '/api/v1/mission_tasks', headers: headers, params: body.to_json
+
+    body = { mission_id: mission.id,
+             task_id: '',
+             email: @calvin.email,
+             auth_token: @calvin.auth_token}
+
+    post '/api/v1/mission_tasks', headers: @headers, params: body.to_json
     expect(response).to_not be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
     expect(json_body).to have_key(:data)
