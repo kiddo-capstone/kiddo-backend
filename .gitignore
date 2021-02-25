@@ -25,6 +25,7 @@
 # no one cares about coverage
 /coverage/*
 
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

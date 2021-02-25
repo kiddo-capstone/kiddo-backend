@@ -4,6 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.3'
 
 gem 'aws-sdk'
+gem 'aws-sdk-rails'
+gem "aws-sdk-s3", require: false
+gem 'cloudinary'
+
 
 gem 'rack-cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

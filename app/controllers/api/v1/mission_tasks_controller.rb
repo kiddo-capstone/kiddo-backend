@@ -1,7 +1,6 @@
 
 class Api::V1::MissionTasksController < ApplicationController
-  before_action :set_s3_direct_post, only: [:update]
-
+  
   def show
     json_create(MissionTask.find(params[:id]))
   end
@@ -28,9 +27,9 @@ class Api::V1::MissionTasksController < ApplicationController
   end
 
   def update 
-    require 'pry'; binding.pry
     mission_task = MissionTask.find_by(id: params[:id])
     if mission_task 
+      require 'pry'; binding.pry
       mission_task.update(mission_task_params)
       render json: { message: 'sucessfully updated mission task!' }
     else 
@@ -50,27 +49,31 @@ class Api::V1::MissionTasksController < ApplicationController
     render json: MissionTaskSerializer.new(mission_task)
   end
 
+  private
+
+  
   def mission_task_params
-    params.permit(:is_completed, :message, :mission_id, :task_id, :image_path)
+    params.permit(:is_completed, :message, :mission_id, :task_id, :image_path, :image)
   end
 
-  def set_s3_direct_post
-    s3 = Aws::S3::Resource.new(region: 'us-west-2')
-    #image_file = File.read('spec/fixtures/new_math.png')
+  # def set_s3_direct_post
+  #   require 'pry'; binding.pry
+  #   s3 = Aws::S3::Resource.new(region: 'us-west-2')
+  #   #image_file = File.read('spec/fixtures/new_math.png')
 
-    # my_bucket = s3.bucket('wills-bucket')
-    # my_bucket.create
-    name = File.basename "#{params[:image][:original_filename]}"
-    s3_bucket = s3.bucket('wills-bucket')
-    obj2 = s3_bucket.objects(params[:original_filename])
-    require 'pry'; binding.pry
-    obj = s3.bucket('wills-bucket').object(name)
-    require 'pry'; binding.pry
-    obj.upload_file("#{params[:image][:tempfile]}")
-    #obj.upload_file("#{params[:image][:tempfile]}",'wills-bucket',"#{params[:image][:original_filename]}")
+  #   # my_bucket = s3.bucket('wills-bucket')
+  #   # my_bucket.create
+  #   name = File.basename "#{params[:image]}"
+  #   s3_bucket = s3.bucket('wills-bucket')
+   
+  #   obj = s3.bucket('wills-bucket').object(name)
+  #   test = obj.put(body: params[:image_path])
+
+  #   require 'pry'; binding.pry
+  #   #obj.upload_file("#{params[:image][:tempfile]}")
+  #   #obj.upload_file("#{params[:image][:tempfile]}",'wills-bucket',"#{params[:image][:original_filename]}")
     
     
-    require 'pry'; binding.pry
-    #s3_direct_post = s3.presigned_post(key: "uploads/#{SecureRandom.uuid}/${params[:image][:original_filename]}", success_action_status: '201', acl: 'public-read')
-  end
+  #   #s3_direct_post = s3.presigned_post(key: "uploads/#{SecureRandom.uuid}/${params[:image][:original_filename]}", success_action_status: '201', acl: 'public-read')
+  # end
 end

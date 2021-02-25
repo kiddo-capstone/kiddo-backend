@@ -25,9 +25,9 @@ describe ' mission tasks' do
     mission.tasks << task1
     mission_task = mission.mission_tasks[0]
     body = { is_completed: true, message: 'Im done!!', image: image_file}
-    headers = { 'CONTENT_TYPE' => 'application/json' }
+    headers = { 'CONTENT_TYPE' => 'multipart/form-data' }
+    patch "/api/v1/mission_tasks/#{mission_task.id}", headers: headers, params: body
     require 'pry'; binding.pry
-    patch "/api/v1/mission_tasks/#{mission_task.id}", headers: headers, params: body.to_json
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
     require 'pry'; binding.pry
