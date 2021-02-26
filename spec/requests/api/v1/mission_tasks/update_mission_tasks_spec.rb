@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ' mission tasks' do
-  it 'can update a mission task' do
+  it 'can update a mission task even if no image' do
     mission = create(:mission)
     task1 = create(:task)
     mission.tasks << task1
@@ -11,11 +11,19 @@ describe ' mission tasks' do
     patch "/api/v1/mission_tasks/#{mission_task.id}", headers: headers, params: body.to_json
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
-    expect(json_body).to have_key(:message)
-    expect(json_body[:message]).to eq('sucessfully updated mission task!')
-    mission_task.reload
-    expect(mission_task.message).to eq('Im done!!')
-    expect(mission_task.is_completed).to eq(true)
+    
+    expect(json_body[:data][:id].to_i).to be_a Integer
+    expect(json_body[:data][:type]).to eq('mission_task')
+    expect(json_body[:data][:attributes]).to have_key(:is_completed)
+    expect(json_body[:data][:attributes][:is_completed]).to eq(true)
+    expect(json_body[:data][:attributes]).to have_key(:message)
+    expect(json_body[:data][:attributes][:message]).to eq('Im done!!')
+    expect(json_body[:data][:attributes]).to have_key(:mission_id)
+    expect(json_body[:data][:attributes][:mission_id]).to be_a(Integer)
+    expect(json_body[:data][:attributes]).to have_key(:task_id)
+    expect(json_body[:data][:attributes][:task_id]).to be_a(Integer)
+    expect(json_body[:data][:attributes]).to have_key(:image_path)
+    expect(json_body[:data][:attributes][:image_path]).to be_nil
   end
 
   it 'can update a mission task if an image is passed' do
