@@ -31,6 +31,14 @@ class Api::V1::MissionTasksController < ApplicationController
     if mission_task 
       require 'pry'; binding.pry
       mission_task.update(mission_task_params)
+      
+      #the path of the uploaded file is:
+      url = "https://wills-bucket.s3-us-west-2.amazonaws.com/#{mission_task.image.key}"
+
+      #to retrieve the actual file and store locally:
+      client = Aws::S3::Client.new(region: 'us-west-2')
+      client.get_object({ bucket:'wills-bucket', key: mission_task.image.key }, target: 'test.png')
+      
       render json: { message: 'sucessfully updated mission task!' }
     else 
       errors = "mission task does not exist."
@@ -56,25 +64,5 @@ class Api::V1::MissionTasksController < ApplicationController
     params.permit(:is_completed, :message, :mission_id, :task_id, :image_path, :image)
   end
 
-  def set_s3_direct_post
-    mission_task = MissionTask.find_by(id: params[:id])
-    s3 = Aws::S3::Resource.new(region: 'us-west-2')
-    require 'pry'; binding.pry
-    #image_file = File.read('spec/fixtures/new_math.png')
-
-    # my_bucket = s3.bucket('wills-bucket')
-    # my_bucket.create
-    name = File.basename "#{params[:image]}"
-    s3_bucket = s3.bucket('wills-bucket')
-   
-    obj = s3.bucket('wills-bucket').object(name)
-    test = obj.put(body: params[:image_path])
-
-    require 'pry'; binding.pry
-    #obj.upload_file("#{params[:image][:tempfile]}")
-    #obj.upload_file("#{params[:image][:tempfile]}",'wills-bucket',"#{params[:image][:original_filename]}")
-    
-    
-    #s3_direct_post = s3.presigned_post(key: "uploads/#{SecureRandom.uuid}/${params[:image][:original_filename]}", success_action_status: '201', acl: 'public-read')
-  end
+  
 end
