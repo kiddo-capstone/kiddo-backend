@@ -18,6 +18,9 @@ gem 'puma', '~> 3.11'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'fast_jsonapi'
+gem 'sidekiq'
+gem 'redis'
+gem 'redis-namespace'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
