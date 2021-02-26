@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :amazon
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
