@@ -13,6 +13,8 @@ class Api::V1::UsersController < ApplicationController
     else
       user = User.new(user_params)
       if user.save
+        mail = UsersMailer.welcome_email(user.id)
+        mail.deliver_later
         json_create(user)
       else
         render json: { data: { errors: user.errors.full_messages.to_sentence, status: 400 } },
