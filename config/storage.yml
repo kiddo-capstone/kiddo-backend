@@ -6,10 +6,15 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-amazon:
+amazontest:
   service: S3
   region: 'us-west-2'
   bucket: 'wills-bucket'
+
+amazonprod:
+  service: S3
+  region: 'us-west-2'
+  bucket: 'kiddo-bucket'
 
 cloudinary:
   service: Cloudinary
