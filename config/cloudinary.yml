@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: turing-kiddo
+  api_key: ENV['CLOUDINARY_API_KEY']
+  api_secret: ENV['CLOUDINARY_SECRET']
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: turing-kiddo
+  api_key: ENV['CLOUDINARY_API_KEY']
+  api_secret: ENV['CLOUDINARY_SECRET']
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: turing-kiddo
+  api_key: ENV['CLOUDINARY_API_KEY']
+  api_secret: ENV['CLOUDINARY_SECRET']
+  enhance_image_tag: true
+  static_file_support: false
