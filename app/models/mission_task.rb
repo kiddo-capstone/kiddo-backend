@@ -17,7 +17,14 @@ class MissionTask < ApplicationRecord
     self.image_path = image.service_url.split('?').first if image.attached?
   end
 
-  def get_image_url
-    url_for(image)
+  def adjust_points(new_is_completed)
+    user = mission.user
+    task_pts = task.points
+    user_points = user.points
+    if new_is_completed 
+      user.update(points: user_points + task_pts)
+    else
+      user.update(points: user_points - task_pts)
+    end
   end
 end
