@@ -11,7 +11,6 @@ describe ' mission tasks' do
     patch "/api/v1/mission_tasks/#{mission_task.id}", headers: headers, params: body.to_json
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
-    
     expect(json_body[:data][:id].to_i).to be_a Integer
     expect(json_body[:data][:type]).to eq('mission_task')
     expect(json_body[:data][:attributes]).to have_key(:is_completed)
@@ -27,8 +26,6 @@ describe ' mission tasks' do
   end
 
   it 'can update a mission task if an image is passed' do
- 
-    
     image_file = fixture_file_upload('spec/fixtures/new_math.png', 'png')
     mission = create(:mission)
     task1 = create(:task)
@@ -39,7 +36,6 @@ describe ' mission tasks' do
     patch "/api/v1/mission_tasks/#{mission_task.id}", headers: headers, params: body
     expect(response).to be_successful
     json_body = JSON.parse(response.body, symbolize_names: true)
-   
     expect(json_body[:data][:id].to_i).to be_a Integer
     expect(json_body[:data][:type]).to eq('mission_task')
     expect(json_body[:data][:attributes]).to have_key(:is_completed)
