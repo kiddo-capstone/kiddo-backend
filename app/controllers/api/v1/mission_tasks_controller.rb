@@ -1,4 +1,5 @@
 class Api::V1::MissionTasksController < ApplicationController
+  
   def show
     json_create(MissionTask.find(params[:id]))
   end
@@ -27,10 +28,6 @@ class Api::V1::MissionTasksController < ApplicationController
     mission_task = MissionTask.find_by(id: params[:id])
     if mission_task
       mission_task.update(mission_task_params)
-      if mission_task.image.attached?
-        url = mission_task.image.service_url 
-        mission_task.update(image_path: url)
-      end
       json_create(mission_task)
     else
       errors = 'mission task does not exist.'
@@ -55,4 +52,6 @@ class Api::V1::MissionTasksController < ApplicationController
   def json_create(mission_task)
     render json: MissionTaskSerializer.new(mission_task)
   end
+
+
 end
