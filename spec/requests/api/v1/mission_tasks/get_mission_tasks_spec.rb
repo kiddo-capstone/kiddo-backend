@@ -3,12 +3,14 @@ require 'rails_helper'
 describe 'it can return a missions task with task details' do
   it 'can return the tasks' do
     mission = create(:mission)
-    task1, task2, task3, task4 = create_list(:task, 4)
+    task1, task2, task3 = create_list(:task, 3)
     mission.tasks << task1
     mission.tasks << task2
     mission.tasks << task3
-    mission.tasks << task4
-
+    
+    task = create(:task)
+    img = fixture_file_upload('spec/fixtures/new_math.png', 'png')
+    mt = MissionTask.create(mission_id: mission.id, task_id: task.id, image: img)
     get "/api/v1/missions/#{mission.id}/tasks"
     expect(response).to be_successful
 
