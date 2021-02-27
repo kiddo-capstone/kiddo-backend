@@ -22,6 +22,107 @@
 
 ## API Contracts
 
+#### MissionTasks
+##### Get A Mission's Tasks ('GET /api/v1/mission/:id/tasks)
+##### Successful Response
+```
+{
+    "data": [
+        {
+            "id": 1,
+            "type": "mission_task",
+            "attributes": {
+                "points": 100,
+                "mission_id": 1,
+                "task_id": 1,
+                "task_name": "EQ level up",
+                "task_description": "Say something kind",
+                "task_category": "EQ",
+                "message": "\"I'm a boss and cleaned my room\"",
+                "image_path": "https://kiddo-bucket.s3.us-west-2.amazonaws.com/JRwCyNM9bWaZqkj4egVYFtXA
+                "is_completed": false
+            }
+        },
+        {
+            "id": 2,
+            "type": "mission_task",
+            "attributes": {
+                "points": 50,
+                "mission_id": 1,
+                "task_id": 2,
+                "task_name": "IQ level up",
+                "task_description": "Conquer homework",
+                "task_category": "IQ",
+                "message": "Nailed it!",
+                "image_path": "",
+                "is_completed": true
+            }
+        }
+    ]
+}
+```
+
+##### Create ('POST /api/v1/mission_tasks)
+###### Request 
+Headers: { 'CONTENT_TYPE' : 'application/json' }
+Body: {mission_id: 1, task_id: 2}
+##### Successful Response
+```
+{
+    "data": {
+        "id": "5",
+        "type": "mission_task",
+        "attributes": {
+            "is_completed": false,
+            "message": null,
+            "mission_id": 1,
+            "task_id": 1,
+            "image_path": null
+        }
+    }
+}
+```
+##### Unsuccesful Response
+```
+{
+    "data": {
+        "errors": "Task must exist",
+        "status": "bad_request"
+    }
+}
+```
+
+##### Update ('PUT /api/v1/mission_tasks)
+###### Request 
+Headers: { 'CONTENT_TYPE' : 'multipart/form-data' }
+Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
+##### Successful Response
+```
+{
+    "data": {
+        "id": "1",
+        "type": "mission_task",
+        "attributes": {
+            "is_completed": true,
+            "message": "\"Im done!!"\",
+            "mission_id": 1,
+            "task_id": 1,
+            "image_path": "https://kiddo-bucket.s3.us-west-2.amazonaws.com/JRwCyNM9bWaZqkj4egVYFtXA
+        }
+    }
+}
+```
+##### Unsuccesful Response
+```
+{
+    "data": {
+        "errors": "mission task does not exist.",
+        "status": "bad_request"
+    }
+}
+```
+
+
 #### Users
 ##### Index (`GET /api/vi/users`)
 ###### Successful Response
