@@ -30,10 +30,6 @@ class Api::V1::MissionTasksController < ApplicationController
 
     if mission_task&.update(mission_task_params)
       point_adjustment(mission_task) if changing_completion
-      if mission_task.image.attached?
-        url = mission_task.image.service_url
-        mission_task.update(image_path: url)
-      end
       json_create(mission_task)
     else
       errors = 'mission task does not exist.'
@@ -55,19 +51,16 @@ class Api::V1::MissionTasksController < ApplicationController
     render json: MissionTaskSerializer.new(mission_task)
   end
 
-<<<<<<< HEAD
 
-=======
   def changing_completion?(mission_task)
     return false if mission_task.nil?
     return false unless params.include?(:is_completed)
 
-    !(mission_task.is_completed == params[:is_completed])
+    mission_task.is_completed != params[:is_completed]
   end
 
   def point_adjustment(mission_task)
     new_is_completed = params[:is_completed]
     mission_task.adjust_points(new_is_completed)
   end
->>>>>>> 8d01c86 (update mission task controller update action")
 end
