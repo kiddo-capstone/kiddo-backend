@@ -19,13 +19,19 @@
 - RSpec
 - PostgresQL
 
-## Setup
+## For Local Setup
 - clone this repo locally
 - install ruby and rails
+- Install the 'Figaro' gem
+`$bundle exec figaro install`<br>
+should install the Figaro gem which will create an `config/application.yml` file and will add it to your .gitignore file<br>
+you then neeed to add the below environmental variables to your application.yml file:<br>
+`S3_ACCESS_KEY_ID: <get key from BE teammate>`<br>
+`S3_SECRET_ACCESS_KEY: <get key from BE teammate>`<br>
 - then run following commands from your terminal:
-`$bundle #to install necessary ruby gems (packages)`/n
-`$bundle exec rspec #to run test suite`/n
-`$rails s #to run server`/n
+`$bundle #to install necessary ruby gems (packages)`<br>
+`$bundle exec rspec #to run test suite`<br>
+`$rails s #to run server`<br>
 
 
 ## API Contracts
