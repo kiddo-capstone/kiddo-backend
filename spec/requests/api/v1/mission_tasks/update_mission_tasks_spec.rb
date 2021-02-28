@@ -48,7 +48,11 @@ describe ' mission tasks' do
     expect(json_body[:data][:attributes][:task_id]).to be_a(Integer)
     expect(json_body[:data][:attributes]).to have_key(:image_path)
     expect(json_body[:data][:attributes][:image_path]).to be_a(String)
-
+    mission_task.reload
+    expect(mission_task.image.attached?).to eq(true)
+    mission_task.image.purge
+    mission_task.reload
+    expect(mission_task.image.attached?).to eq(false)
   end
 
   it 'gets error message when cant find mission task' do
