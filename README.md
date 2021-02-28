@@ -22,10 +22,11 @@
 ## For Local Setup
 - clone this repo locally
 - install ruby and rails
-- Install the 'Figaro' gem
+- install the latest packages:
+`$bundle`
+- Install the 'Figaro' gem (which will create an application.yml file and will add it to your .gitignore file).
 `$bundle exec figaro install`<br>
-should install the Figaro gem which will create an `config/application.yml` file and will add it to your .gitignore file<br>
-you then neeed to add the below environmental variables to your application.yml file:<br>
+- you then neeed to add the below environmental variables to your application.yml file:<br>
 `S3_ACCESS_KEY_ID: <get key from BE teammate>`<br>
 `S3_SECRET_ACCESS_KEY: <get key from BE teammate>`<br>
 - then run following commands from your terminal:
@@ -37,6 +38,8 @@ you then neeed to add the below environmental variables to your application.yml 
 ## API Contracts
 
 #### MissionTasks
+Note, MissionTasks use AWS S3 file storage.  For this to work properly on local host you'll need to install the Figaro gem and then add the AWS keys from your teammates.  See the setup section for more detail.  
+
 ##### Get A Mission's Tasks ('GET /api/v1/mission/:id/tasks)
 ##### Successful Response
 ```
