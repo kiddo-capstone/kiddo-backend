@@ -40,6 +40,13 @@
 #### MissionTasks
 Note, MissionTasks use AWS S3 file storage.  For this to work properly on local host you'll need to install the Figaro gem and then add the AWS keys from your teammates.  See the setup section for more detail.  
 
+##### MissionTask Show ('Get /api/v1/mission_tasks/:id)
+##### Request/Response
+<img src="show_mission_task.png"
+     alt="show_mission_task"
+     style="float: left; margin-right: 600px;" />
+
+
 ##### Get A Mission's Tasks ('GET /api/v1/mission/:id/tasks)
 ##### Successful Response
 ```
