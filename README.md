@@ -19,6 +19,14 @@
 - RSpec
 - PostgresQL
 
+## Setup
+- clone this repo locally
+- install ruby and rails
+- then run following commands from your terminal:
+`$bundle #to install necessary ruby gems (packages)`
+`$bundle exec rspec #to run test suite`
+`$rails s #to run server`
+
 
 ## API Contracts
 
