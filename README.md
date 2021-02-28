@@ -23,9 +23,9 @@
 - clone this repo locally
 - install ruby and rails
 - then run following commands from your terminal:
-`$bundle #to install necessary ruby gems (packages)`
-`$bundle exec rspec #to run test suite`
-`$rails s #to run server`
+`$bundle #to install necessary ruby gems (packages)`/n
+`$bundle exec rspec #to run test suite`/n
+`$rails s #to run server`/n
 
 
 ## API Contracts
