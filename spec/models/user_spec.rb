@@ -10,4 +10,11 @@ RSpec.describe User, type: :model do
   describe 'relationships' do
     it {should have_many(:missions)}
   end
+  
+  describe 'instance_methods' do
+    it 'set_defaults' do
+      user = create(:user)
+      expect(user.points).to eq(0)
+    end
+  end
 end

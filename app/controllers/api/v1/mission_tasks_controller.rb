@@ -26,8 +26,10 @@ class Api::V1::MissionTasksController < ApplicationController
 
   def update
     mission_task = MissionTask.find_by(id: params[:id])
-    if mission_task
-      mission_task.update(mission_task_params)
+    changing_completion = changing_completion?(mission_task)
+
+    if mission_task&.update(mission_task_params)
+      point_adjustment(mission_task) if changing_completion
       json_create(mission_task)
     else
       errors = 'mission task does not exist.'
@@ -41,10 +43,6 @@ class Api::V1::MissionTasksController < ApplicationController
 
   private
 
-  def json_create(mission_task)
-    json_create(mission_task)
-  end
-
   def mission_task_params
     params.permit(:is_completed, :message, :mission_id, :task_id, :image_path, :image)
   end
@@ -54,4 +52,15 @@ class Api::V1::MissionTasksController < ApplicationController
   end
 
 
+  def changing_completion?(mission_task)
+    return false if mission_task.nil?
+    return false unless params.include?(:is_completed)
+
+    mission_task.is_completed != params[:is_completed]
+  end
+
+  def point_adjustment(mission_task)
+    new_is_completed = params[:is_completed]
+    mission_task.adjust_points(new_is_completed)
+  end
 end
