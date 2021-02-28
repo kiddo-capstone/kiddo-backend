@@ -92,11 +92,14 @@ Body: {mission_id: 1, task_id: 2}
 }
 ```
 
-##### Update ('PUT /api/v1/mission_tasks)
+##### Update ('PUT /api/v1/mission_tasks/:id)
 ###### Request 
 Headers: { 'CONTENT_TYPE' : 'multipart/form-data' }
 Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
 ##### Successful Response
+<img src="update_mission_task.png"
+     alt="update_mission_task"
+     style="float: left; margin-right: 600px;" />
 ```
 {
     "data": {
