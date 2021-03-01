@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+require 'csv'
 
 MissionTask.destroy_all
 Mission.destroy_all
@@ -40,3 +35,11 @@ mission_task_2 = MissionTask.create(mission_id: mission_2.id, task_id: task_2.id
                                     image_path: '', is_completed: true)
 mission_task_3 = MissionTask.create(mission_id: mission_3.id, task_id: task_3.id, message: 'This too shall pass',
                                     image_path: '', is_completed: false)
+
+#csv stuff 
+
+CSV.foreach(Rails.root.join('db/data/tasks.csv'), headers: true) do |row|
+ Task.create(row.to_h)
+end
+
+ActiveRecord::Base.connection.reset_pk_sequence!('tasks')
