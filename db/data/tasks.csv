@@ -1,46 +1,31 @@
-name,description,category,points,created_at,updated_at
-Create bookmarks,"Grab some markers, packing tape, and a piece of printer paper. Cut the printer paper into 5 pieces and color them in with whatever designs you'd like. When you're done designing, sandwich the paper pieces between two pieces of packing tape then use scissors to cut off the excess tape. ",Creativity Training,5,,
-Go on a bike or scooter ride,Hop on some wheels and take a spin around the neighborhood. ,Health Training,10,,
-Write down your 5 best qualities,"There are so many wonderful things about yourself! Pick five things you especially love about what makes you, you. ",Health Training,5,,
-Talk a walk ,Notice all the different plants and trees as you walk. Write down the names of any that you recognize.,Health Training,10,,
-Put together a jigsaw puzzle,"Find a puzzle around the house or pick one online. Puzzles teach us a lot about concentration and problem-solving skills! Plus, it's pretty cool watching a bunch of little pieces come together to make a whole.",Creativity Training,10,,
-Learn to crochet,Get a crochet needle and some yarn and make something fun!,Creativity Training,10,,
-Write a thank you letter to the grownups in your life,What are some of the ways your grownups have helped you overcome challenges? Write about some of the things your family has done for you to make certain things in your life possible. Appreciation is always appreciated!,Creativity Training,5,,
-Make a handmade card for a friend,Bust out a piece of pen and paper and make a thoughtful card to send to a friend via snail mail.,Creativity Training,5,,
-Write about your favorite thing that you learned today,"Did you learn about something in school, at home, or online today that really inspired or surprised you? ",Brain Training,10,,
-Design a gif,Create a fun GIF of your choosing using the Giphy Capture app or a different method of your choosing.,Creativity Training,10,,
-Cut out sugary beverages today,Eliminate all sugary beverages from your diet for the day. Take a picture of your favorite pop or juice. How much sugar does it have?,Heatth Training,5,,
-Eat healthy a meal using the My Plate model,"Create a lunch or dinner that follows the my plate plan - includes protein, fruit, vegetables, grains, and dairy.  Take a picture of your plate!",Health Training,10,,
-Practice Box-breathing meditation for 5 minutes,"Find a quiet place to sit and get comfortable.  Inhale through your nose for 4 counts, hold for 4, exhale through your mouth for 4, hold for 4 . . .Repeat. Write about how this made you feel. Did it help you relax? Would you consider trying this when stressed?",Health Training,5,,
-Use a sleep story to fall asleep,Use a sleep story to fall asleep at night,Health Training,,,
-Get down with yoga,"Follow along with a yoga video online or try a variety of poses like Child's Pose, Downward Dog and Warrior. Yoga can boost self-esteem, strength, and flexibility! Take a moment to learn about yoga and some different exercises you can do to start your day. Write about a new routine you could use to start ",Health Training,5,,
-Learn about recycling in your town,"Find out how your town recycles paper, plastic, and glass. What did you learn? What are some ways you could be more conscious about how your family recycles?",Basic Training,10,,
-Take a shorter shower than usual,Bathing is obviously an important of self care but we can help trim down our carbon footprint by being aware of how long we're in the shower. Write about all the ways you use water in your day-to-day life.,Basic Training,10,,
-Go on a trash walk,When you are taking a walk bring a trash bag and collect trash to throw it away when you get home,Basic Training,10,,
-Make your own plastic bag jumprope,Does your family save plastic bags from the grocery store? Rip them apart and tie them together to make your very own jumprope! Try it out by jumping until you get tired.,Health Training,10,,
-Plant a tree,Trees are...,Health Training,5,,
-Gather toys and clothes you don't use anymore to donate,,Basic Training,10,,
-Put kind sticky notes all over your bathroom mirror,Give yourself some daily reminders to inspire yourself when your day begins.,Health Training,5,,
-Write a thank you note and send it to your local fire station,,Creativity Training,5,,
-Compliment 3 people today,,Basic Training,5,,
-Smile at everyone you see today,,Basic Training,5,,
-Tell someone why they matter to you in a unique way,,Creativity Training,10,,
-Paint rocks and leave them places,Gather some rocks and paint them with pictures and words and then leave them places for people to find,Creativity Training,5,,
-Make your own stress ball,"All you need for this activity is some flour or corn starch, a balloon and a funnel. Start by stretching out the balloon, then stick the funnel in the opening and pour in the flour or corn starch. You may need to tap the sides of the funnel to help the flour move down the funnel. Start by stretching out the balloon, then stick the funnel in the opening and pour in the flour or corn starch. You may need to tap the sides of the funnel to help the flour move down the funnel. Once the balloon is filled with flour (it will not expand much), simply tie it. You may want to consider placing it inside another balloon to make the exterior stronger.",Health Training,10,,
-Create your own comfy reading nook,Build a space in your home or room dedicated to reading. Build a fort or turn a giant box into a little nook and lay down some floor pillows and blankets to make it extra cozy.,Brain Training,5,,
-Make your own planter,Find a milk jug or other recyclable container to cut up and make your very own planter. Decorate it for some added flair!,Creativity Training,5,,
-Make your bedroom sparkle,,Basic Training,5,,
-Draw a self portrait,,Creativity Training,5,,
-Solve a sudoku puzzle,,Brain Training,5,,
-Meditate for five minutes,,Health Training,5,,
-Make a homemade puzzle,Draw a picture on a piece of paper then use scissors to cut it up into pieces. Put it back together or store the pieces together in a ziploc bag!,Creativity Training,10,,
-Bake a delicious treat,Get creative here!,Creativity Training,5,,
-Stand up and wiggle it out - from your head to your toes,,Health Training,10,,
-Write about a win and a challenge you faced today,,Brain Training,5,,
-Make your own sidewalk chalk,"Eggshells contain calcium, the same material that makes chalk. Grind them up and mix them with flour, water, and food coloring to make your very own sidewalk chalk.",Brain Training,10,,
-Float a dry erase marker drawing,"Draw a picture with a dry erase marker on a plate or bowl. Pour water over your drawing and watch it rise off the surface! This works due to the insolubility of dry-erase marker ink in water, combined with the lighter density of the ink.",Brain Training,5,,
-Clean coins,"Put some vinegar & salt, coca cola, and water, in three different cups. Place coins in each of the cups. Which one do you think will work the best and why?",Brain Training,5,,
-Make a paper airplane soar,,Creativity Training,5,,
-Make giant bubbles out of dish soap,,Brain Training,5,,
-Build a rubber band guitar,"For this task, you'll need a cup and some rubber bands. Place the rubber bands around the cup and start strumming! Take a picture of your creation to fulfill this task!",Creativity Training,10,,
-Create a bucket list,"What are some of the things you would love to do most? Make a list or write a story about places you want to travel, people you want to meet, foods you want to try - the options are limitless!",Creativity Training,5,,
+name,description,category,photo,points
+Create bookmarks,"Grab some markers, packing tape, and a piece of printer paper. Cut the printer paper into 5 pieces and color them in with whatever designs you'd like. When you're done designing, sandwich the paper pieces between two pieces of packing tape then use scissors to cut off the excess tape. ",Creativity Training,TRUE,8
+Go on a bike or scooter ride,Hop on some wheels and take a spin around the neighborhood. ,Health Training,FALSE,5
+Write down your 5 best qualities,"There are so many wonderful things about yourself! Pick five things you especially love about what makes you, you. ",Health Training,FALSE,5
+Talk a walk ,Notice all the different plants and trees as you walk. Write down the names of any that you recognize.,Health Training,FALSE,5
+Put together a jigsaw puzzle,"Find a puzzle around the house or pick one online. Puzzles teach us a lot about concentration and problem-solving skills! Plus, it's pretty cool watching a bunch of little pieces come together to make a whole.",Creativity Training,TRUE,9
+Learn to crochet,Get a crochet needle and some yarn and make something fun!,Creativity Training,TRUE,8
+Write a thank you letter to the grownups in your life,What are some of the ways your grownups have helped you overcome challenges? Write about some of the things your family has done for you to make certain things in your life possible. Appreciation is always appreciated!,Creativity Training,FALSE,6
+Make a handmade card for a friend,Bust out a piece of pen and paper and make a thoughtful card to send to a friend via snail mail.,Creativity Training,TRUE,6
+Write about your favorite thing that you learned today,"Did you learn about something in school, at home, or online today that really inspired or surprised you? ",Brain Training,FALSE,5
+Design a gif,Create a fun GIF of your choosing using the Giphy Capture app or a different method of your choosing.,Creativity Training,TRUE,8
+Cut out sugary beverages today,Eliminate all sugary beverages from your diet for the day. Take a picture of your favorite pop or juice. How much sugar does it have?,Health Training,TRUE,5
+Eat healthy a meal using the My Plate model,"Create a lunch or dinner that follows the my plate plan - includes protein, fruit, vegetables, grains, and dairy.  Take a picture of your plate!",Health Training,TRUE,6
+Practice Box-breathing meditation for 5 minutes,"Find a quiet place to sit and get comfortable.  Inhale through your nose for 4 counts, hold for 4, exhale through your mouth for 4, hold for 4 . . .Repeat. Write about how this made you feel. Did it help you relax? Would you consider trying this when stressed?",Health Training,FALSE,5
+Use a sleep story to fall asleep,Use a sleep story to fall asleep at night,Health Training,FALSE,5
+Get down with yoga,"Follow along with a yoga video online or try a variety of poses like Child's Pose, Downward Dog and Warrior. Yoga can boost self-esteem, strength, and flexibility! Take a moment to learn about yoga and some different exercises you can do to start your day. Write about a new routine you could use to start ",Health Training,FALSE,7
+Learn about recycling in your town,"Find out how your town recycles paper, plastic, and glass. What did you learn? What are some ways you could be more conscious about how your family recycles?",Basic Training,FALSE,5
+Take a shorter shower than usual,Bathing is obviously an important of self care but we can help trim down our carbon footprint by being aware of how long we're in the shower. Write about all the ways you use water in your day-to-day life.,Basic Training,FALSE,5
+Go on a trash walk,When you are taking a walk bring a trash bag and collect trash to throw it away when you get home,Basic Training,TRUE,8
+Make your own plastic bag jumprope,Does your family save plastic bags from the grocery store? Rip them apart and tie them together to make your very own jumprope! Try it out by jumping until you get tired.,Health Training,TRUE,7
+Put kind sticky notes all over your bathroom mirror,Give yourself some daily reminders to inspire yourself when your day begins.,Health Training,TRUE,6
+Paint rocks and leave them places,Gather some rocks and paint them with pictures and words and then leave them places for people to find,Creativity Training,TRUE,8
+Make your own stress ball,"All you need for this activity is some flour or corn starch, a balloon and a funnel. Start by stretching out the balloon, then stick the funnel in the opening and pour in the flour or corn starch. You may need to tap the sides of the funnel to help the flour move down the funnel. Start by stretching out the balloon, then stick the funnel in the opening and pour in the flour or corn starch. You may need to tap the sides of the funnel to help the flour move down the funnel. Once the balloon is filled with flour (it will not expand much), simply tie it. You may want to consider placing it inside another balloon to make the exterior stronger.",Health Training,TRUE,8
+Create your own comfy reading nook,Build a space in your home or room dedicated to reading. Build a fort or turn a giant box into a little nook and lay down some floor pillows and blankets to make it extra cozy.,Brain Training,TRUE,7
+Make your own planter,Find a milk jug or other recyclable container to cut up and make your very own planter. Decorate it for some added flair!,Creativity Training,TRUE,7
+Make a homemade puzzle,Draw a picture on a piece of paper then use scissors to cut it up into pieces. Put it back together or store the pieces together in a ziploc bag!,Creativity Training,TRUE,9
+Make your own sidewalk chalk,"Eggshells contain calcium, the same material that makes chalk. Grind them up and mix them with flour, water, and food coloring to make your very own sidewalk chalk.",Brain Training,TRUE,10
+Float a dry erase marker drawing,"Draw a picture with a dry erase marker on a plate or bowl. Pour water over your drawing and watch it rise off the surface! This works due to the insolubility of dry-erase marker ink in water, combined with the lighter density of the ink.",Brain Training,TRUE,6
+Clean coins,"Put some vinegar & salt, coca cola, and water, in three different cups. Place coins in each of the cups. Which one do you think will work the best and why?",Brain Training,TRUE,7
+Build a rubber band guitar,"For this task, you'll need a cup and some rubber bands. Place the rubber bands around the cup and start strumming! Take a picture of your creation to fulfill this task!",Creativity Training,TRUE,7
+Create a bucket list,"What are some of the things you would love to do most? Make a list or write a story about places you want to travel, people you want to meet, foods you want to try - the options are limitless!",Creativity Training,FALSE,6
