@@ -27,12 +27,8 @@ Rails.application.configure do
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
-
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :amazontest
-
-  config.action_mailer.perform_caching = false
-
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
@@ -44,6 +40,7 @@ Rails.application.configure do
   #   arguments: '-i'
   # }
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = {from: 'no-reply@example.com'}
   # Print deprecation notices to the stderr.
