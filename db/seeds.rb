@@ -37,7 +37,6 @@ mission_task_3 = MissionTask.create(mission_id: mission_3.id, task_id: task_3.id
                                     image_path: '', is_completed: false)
 
 #csv stuff 
-
 CSV.foreach(Rails.root.join('db/data/tasks.csv'), headers: true) do |row|
  Task.create(row.to_h)
 end
