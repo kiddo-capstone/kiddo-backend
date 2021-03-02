@@ -23,7 +23,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    User.destroy(params[:id])
+    user = User.find_by(id: params[:id])
+    if user&.destroy
+      json_create(user)
+    else
+      errors = "Unable to destroy user."
+      json_errors(errors, :bad_request)
+    end
   end
 
   private

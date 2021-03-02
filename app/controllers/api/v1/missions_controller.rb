@@ -1,5 +1,4 @@
 class Api::V1::MissionsController < ApplicationController
-
   def index
     json_create(Mission.all)
   end
@@ -9,7 +8,7 @@ class Api::V1::MissionsController < ApplicationController
     if mission
       json_create(mission)
     else
-      errors = "Unable to find mission"
+      errors = 'Unable to find mission'
       json_errors(errors, :bad_request)
     end
   end
@@ -36,10 +35,10 @@ class Api::V1::MissionsController < ApplicationController
 
   def destroy
     mission = Mission.find_by(id: params[:id])
-    if mission
-      json_create(mission.destroy)
+    if mission&.destroy
+      json_create(mission)
     else
-      errors = "Unable to destroy mission."
+      errors = 'Unable to destroy mission.'
       json_errors(errors, :bad_request)
     end
   end
@@ -54,4 +53,3 @@ class Api::V1::MissionsController < ApplicationController
     params.permit(:name, :due_date, :user_id)
   end
 end
-

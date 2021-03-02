@@ -3,6 +3,8 @@ require 'rails_helper'
 describe 'mission destroy api' do
   it 'can destroy a mission' do
     mission = create(:mission)
+    task = create(:task)
+    mission.tasks << task
     expect(Mission.all.count).to eq(1)
     delete "/api/v1/missions/#{mission.id}"
     expect(response).to be_successful

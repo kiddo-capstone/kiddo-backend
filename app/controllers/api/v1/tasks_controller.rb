@@ -39,7 +39,14 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def destroy
-    Task.destroy(params[:id])
+    task = Task.find_by(id: params[:id])
+    if task&.destroy
+      json_create(task)
+    else
+      errors = "Unable to destroy task."
+      json_errors(errors, :bad_request)
+    end
+
   end
 
   private
