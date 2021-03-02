@@ -22,4 +22,13 @@ describe 'user destroy api' do
     expect(User.count).to eq(0)
     expect{ User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound)
   end
+
+  it 'sends an error json when tryign to destroy an invalid user' do
+    
+    delete "/api/v1/users/17"
+    expect(response.status).to eq(400)
+    response_body = JSON.parse(response.body, symbolize_names: true)
+    expected = {:data=>{:errors=>"Unable to destroy user.", :status=>"bad_request"}}
+    expect(expected).to eq(response_body)
+  end
 end

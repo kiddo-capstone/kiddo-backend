@@ -40,7 +40,7 @@ class Api::V1::TasksController < ApplicationController
 
   def destroy
     task = Task.find_by(id: params[:id])
-    if task.destroy
+    if task&.destroy
       json_create(task)
     else
       errors = "Unable to destroy task."
