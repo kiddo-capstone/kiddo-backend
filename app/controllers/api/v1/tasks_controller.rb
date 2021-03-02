@@ -49,6 +49,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def task_params
-    params.permit(:name, :description, :category, :points)
+    params.permit(:name, :description, :category, :points, :resource_alt, :resourse_link, :resource_type)
   end
 end
