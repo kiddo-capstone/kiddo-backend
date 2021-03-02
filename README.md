@@ -34,6 +34,52 @@
 `$bundle exec rspec #to run test suite`<br>
 `$rails s #to run server`<br>
 
+## Database Schema
+To avoid confusion, below does not include the tables created as part of active_storage.  below are the tables and fields that front end should be able to access:
+```
+create_table "mission_tasks", force: :cascade do |t|
+    t.bigint "mission_id"
+    t.bigint "task_id"
+    t.string "message"
+    t.string "image_path"
+    t.boolean "is_completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mission_id"], name: "index_mission_tasks_on_mission_id"
+    t.index ["task_id"], name: "index_mission_tasks_on_task_id"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "name"
+    t.date "due_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_missions_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "category"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "photo"
+    t.string "resource_link"
+    t.string "resource_alt"
+    t.string "resource_type"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "points"
+  end
+  ```
+
 
 ## API Contracts
 
