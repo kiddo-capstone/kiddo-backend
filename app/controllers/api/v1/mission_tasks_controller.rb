@@ -27,8 +27,9 @@ class Api::V1::MissionTasksController < ApplicationController
   def update
     mission_task = MissionTask.find_by(id: params[:id])
     changing_completion = changing_completion?(mission_task)
-
+    
     if mission_task&.update(mission_task_params)
+      update_image(mission_task) if params.include?(:image)
       point_adjustment(mission_task) if changing_completion
       json_create(mission_task)
     else
@@ -44,7 +45,7 @@ class Api::V1::MissionTasksController < ApplicationController
   private
 
   def mission_task_params
-    params.permit(:is_completed, :message, :mission_id, :task_id, :image_path, :image)
+    params.permit(:is_completed, :message, :mission_id, :task_id)
   end
 
   def json_create(mission_task)
@@ -62,5 +63,12 @@ class Api::V1::MissionTasksController < ApplicationController
   def point_adjustment(mission_task)
     new_is_completed = params[:is_completed]
     mission_task.adjust_points(new_is_completed)
+  end
+
+  def update_image(mission_task)
+      mission_task.image.purge
+      mission_task.image.attach(params[:image])
+      img_path = mission_task.image.service_url.split('?').first
+      mission_task.update(image_path: img_path)
   end
 end
