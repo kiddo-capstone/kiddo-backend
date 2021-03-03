@@ -9,6 +9,10 @@ RSpec.describe User, type: :model do
 
   describe 'relationships' do
     it {should have_many(:missions)}
+    it 'mission_tasks' do
+      user = create(:user)
+      expect(user.mission_tasks.empty?).to be(true)
+    end
   end
   
   describe 'instance_methods' do
@@ -16,5 +20,8 @@ RSpec.describe User, type: :model do
       user = create(:user)
       expect(user.points).to eq(0)
     end
+
   end
+
+  
 end
