@@ -9,7 +9,8 @@
 - [Schema](#schema)
 - [Contributors](#contributors)
 
-## Overview
+## Overview of Application
+This is the backend API for the kiddo application.  The FE application can be found [here](https://github.com/kiddo-capstone/kiddo-frontend). 
 
 
 ## Techstack
