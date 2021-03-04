@@ -10,7 +10,9 @@
 - [Contributors](#contributors)
 
 ## Overview of Application
-This is the backend API for the kiddo application.  The FE application can be found [here](https://github.com/kiddo-capstone/kiddo-frontend). 
+This is the backend API for the kiddo application.  The FE application and a description of the application as a whole can be found [here](https://github.com/kiddo-capstone/kiddo-frontend). 
+
+This Backend repository performs CRUD operations for users, missions, tasks, and mission_tasks, as requested by front end.  This application uses AWS S3 for cloud storage of images and action_mailer to send automated registration emails to new users.  This application uses Circle for continuous integration and is deployed on Heroku.  
 
 
 ## Techstack
