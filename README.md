@@ -399,7 +399,7 @@ body: {"name":"test", "description":"testing", "category":"test", "points":3}
 
 ## Contributors
 
-- Lola Dolinsky - [![LinkedIn][linkedin-shield]]() - [![GitHub][github-shield]](https://github.com/lo-la-do-li)
+- Lola Dolinsky - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/lola-dolinsky-15b5b01ba/) - [![GitHub][github-shield]](https://github.com/lo-la-do-li)
 
 - Bailey Dunning - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/baileydunning/) - [![GitHub][github-shield]](https://github.com/baileydunning)
 
