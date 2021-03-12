@@ -65,16 +65,13 @@ describe 'user show api' do
     expect(response).to be_successful
     json_response = JSON.parse(response.body, symbolize_names: true)
     expect(json_response.count).to eq(4)
-
-    expected = [{ user_id: @user.id, category: 'brain_training', total_tasks: 2, completed_tasks: 1, total_points: 4, completed_points: 2 },
-                { user_id: @user.id, category: 'house_chores', total_tasks: 3, completed_tasks: 2, total_points: 6,
-                  completed_points: 4 },
-                { user_id: @user.id, category: 'outdoor_traning', total_tasks: 1, completed_tasks: 1, total_points: 2,
-                  completed_points: 2 },
-                { user_id: @user.id, category: 'physical_training', total_tasks: 2, completed_tasks: 0, total_points: 4,
-                  completed_points: 0 }]
-
-    expect(json_response).to eq(expected)
+    stat = json_response.first
+    expect(stat).to have_key(:user_id)
+    expect(stat).to have_key(:category)
+    expect(stat).to have_key(:total_tasks)
+    expect(stat).to have_key(:completed_tasks)
+    expect(stat).to have_key(:total_points)
+    expect(stat).to have_key(:completed_points)
   end
   it 'returns an error json if bad user id' do
     get '/api/v1/users/37/stats'
