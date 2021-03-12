@@ -121,10 +121,16 @@ RSpec.describe User, type: :model do
     end
 
     it 'user_stats' do
-      # stats = User.find(@user.id).user_stats
       stats = User.find_by(id: @user.id).user_stats
-      require 'pry'; binding.pry
-      # stats = UserStatsFacade.get_user_stats(@user.id)
+      arr_stats = stats.to_a
+      arr_stats.each do |stat|
+        expect(stat['user_id']).to eq(@user.id)
+        expect(stat).to have_key('category')
+        expect(stat).to have_key('total_tasks')
+        expect(stat).to have_key('completed_tasks')
+        expect(stat).to have_key('total_points')
+        expect(stat).to have_key('completed_points')
+      end
     end
   end
 end
