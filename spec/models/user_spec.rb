@@ -80,46 +80,6 @@ RSpec.describe User, type: :model do
       expect(@user.points).to eq(0)
     end
 
-    it 'user_category_totals' do
-      stats = User.find(@user.id).category_totals
-      stats.each do |stat|
-        case stat.category
-        when 'house_chores'
-          expect(stat.total_tasks).to eq(3)
-          expect(stat.total_points).to eq(6)
-        when 'physical_training'
-          expect(stat.total_tasks).to eq(2)
-          expect(stat.total_points).to eq(4)
-        when 'brain_training'
-          expect(stat.total_tasks).to eq(2)
-          expect(stat.total_points).to eq(4)
-        when 'outdoor_training'
-          expect(stat.total_tasks).to eq(1)
-          expect(stat.total_points).to eq(2)
-        end
-      end
-    end
-
-    it 'user_category_completed' do
-      stats = User.find(@user.id).category_completed
-      stats.each do |stat|
-        case stat.category
-        when 'house_chores'
-          expect(stat.completed_tasks).to eq(2)
-          expect(stat.completed_points).to eq(4)
-        when 'physical_training'
-          expect(stat.completed_tasks).to eq(2)
-          expect(stat.completed_points).to eq(4)
-        when 'brain_training'
-          expect(stat.completed_tasks).to eq(1)
-          expect(stat.completed_points).to eq(2)
-        when 'outdoor_training'
-          expect(stat.completed_tasks).to eq(1)
-          expect(stat.completed_points).to eq(2)
-        end
-      end
-    end
-
     it 'user_stats' do
       stats = User.find_by(id: @user.id).user_stats
       arr_stats = stats.to_a
