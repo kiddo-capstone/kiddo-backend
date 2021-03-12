@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :missions
       resources :mission_tasks
 
+      get 'users/:id/stats', to: 'users#stats'
       get 'missions/:id/tasks', to: 'mission_tasks#index'
     end
   end
