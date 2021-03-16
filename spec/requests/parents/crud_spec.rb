@@ -48,9 +48,24 @@ describe 'parent create api' do
     expect(response).to be_successful
     expect(created_parent.name).to eq(parent[:name])
     expect(created_parent.email).to eq(parent[:email])
-
+    expect(created_parent.email).to eq(parent[:email])
+  
     post '/api/v1/parents', headers: headers, params: JSON.generate(parent)
     returned_parent = JSON.parse(response.body, symbolize_names: true)
     expect(returned_parent[:data][:id]).to_not be_nil
+  end
+
+  it 'it can verify parents have users' do
+    parent = create(:parent)
+    child = create(:user, parent_id: parent.id)
+    body = {
+        name: parent.name,
+        email: parent.email
+      }
+    headers = { 'CONTENT_TYPE' => 'application/json'}
+    post '/api/v1/parents', headers: headers, params: JSON.generate(body)
+    returned_parent = JSON.parse(response.body, symbolize_names: true)
+    expect(returned_parent[:data][:id]).to_not be_nil    
+    expect(returned_parent[:data][:relationships][:users][:data][0][:id]).to eq("#{child.id}")
   end
 end
