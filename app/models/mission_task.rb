@@ -6,6 +6,7 @@ class MissionTask < ApplicationRecord
 
   belongs_to :mission
   belongs_to :task
+  scope :completed, -> {where('is_completed = ?', true)}
 
   def set_defaults
     self.is_completed = false if is_completed.nil?
