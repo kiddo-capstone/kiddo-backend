@@ -32,6 +32,16 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def stats
+    user = User.find_by(id: params[:id])
+    if user
+      render json: user.user_stats
+    else
+      errors = "Unable to get user stats"
+      json_errors(errors, :bad_request)
+    end
+  end
+
   private
 
   def json_create(task)
@@ -41,4 +51,6 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.permit(:name, :email, :updated_at)
   end
+
+  
 end
