@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :tasks
       resources :missions
       resources :mission_tasks
+      resources :parents
 
       get 'missions/:id/tasks', to: 'mission_tasks#index'
     end
