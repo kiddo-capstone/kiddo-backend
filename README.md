@@ -40,7 +40,28 @@ This Backend repository performs CRUD operations for users, missions, tasks, and
 ## Database Schema
 To avoid confusion, below does not include the tables created as part of active_storage.  below are the tables and fields that front end should be able to access:
 ```
-create_table "mission_tasks", force: :cascade do |t|
+create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "mission_tasks", force: :cascade do |t|
     t.bigint "mission_id"
     t.bigint "task_id"
     t.string "message"
@@ -61,6 +82,13 @@ create_table "mission_tasks", force: :cascade do |t|
     t.index ["user_id"], name: "index_missions_on_user_id"
   end
 
+  create_table "parents", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -76,11 +104,13 @@ create_table "mission_tasks", force: :cascade do |t|
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "points"
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_users_on_parent_id"
   end
+  
   ```
 
 
@@ -210,7 +240,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
             "type": "user",
             "attributes": {
                 "name": "Calvin",
-                "email": "Calvin@example.com"
+                "points": 125
             }
         },
         {
@@ -218,7 +248,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
             "type": "user",
             "attributes": {
                 "name": "Hobbes",
-                "email": "Hobbes@example.com"
+                points: 421
             }
         }
     ]
@@ -234,7 +264,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
         "type": "user",
         "attributes": {
             "name": "Calvin",
-            "email": "Calvin@example.com"
+            "points": 125
         }
     }
 }
@@ -245,7 +275,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
 
 ```
 headers: 'CONTENT_TYPE' => 'application/json'
-body: {"name": "John", "email": "John@example.com"}
+body: {"name": "John"}
 ```
 ###### Successful Response
 ```
@@ -255,7 +285,7 @@ body: {"name": "John", "email": "John@example.com"}
         "type": "user",
         "attributes": {
             "name": "John",
-            "email": "John@example.com"
+            "points": 0
         }
     }
 }
@@ -267,6 +297,41 @@ body: {"name": "John", "email": "John@example.com"}
 ```
 204 Response No Content
 ```
+
+#### Parents
+##### Create (`POST /api/v1/parents`)
+
+```
+headers: 'CONTENT_TYPE' => 'application/json'
+body: {"name": "John"
+       "email: "John@johnmail.com"
+    }
+
+```
+###### Successful Response
+```
+{
+    "data": {
+        "id": "3",
+        "type": "user",
+        "attributes": {
+            "name": "John",
+            "email": "John@johnmail.com"
+        }
+        "relationships": {
+            "users": {
+                "data": {
+                    "id": "1"
+                    "name": "Joey"
+                    "points": 0
+                    }
+                 }
+              }
+          }
+    }
+}
+```
+
 
 #### Missions
 ##### Create (`POST /api/v1/missions`)
