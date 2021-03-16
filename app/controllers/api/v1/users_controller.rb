@@ -8,17 +8,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    if User.find_by(email: params[:email])
-      json_create(User.find_by(email: params[:email]))
+    user = User.new(user_params)
+    if user.save
+      json_create(user)
     else
-      user = User.new(user_params)
-      if user.save
-        json_create(user)
-        UserMailer.with(user: user).welcome_email.deliver_later
-      else
-        render json: { data: { errors: user.errors.full_messages.to_sentence, status: 400 } },
-               status: :bad_request
-      end
+      render json: { data: { errors: user.errors.full_messages.to_sentence, status: 400 } },
+              status: :bad_request
     end
   end
 
