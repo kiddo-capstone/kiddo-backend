@@ -304,7 +304,7 @@ body: {"name": "John"}
 ```
 headers: 'CONTENT_TYPE' => 'application/json'
 body: {"name": "John"
-       "email: "John@johnmail.com"
+       "email: "John@johnemail.com"
     }
 
 ```
@@ -312,26 +312,102 @@ body: {"name": "John"
 ```
 {
     "data": {
-        "id": "3",
-        "type": "user",
+        "id": "5",
+        "type": "parent",
         "attributes": {
             "name": "John",
-            "email": "John@johnmail.com"
-        }
+            "email": "John@johnemail.com"
+        },
         "relationships": {
             "users": {
-                "data": {
-                    "id": "1"
-                    "name": "Joey"
-                    "points": 0
-                    }
-                 }
-              }
-          }
+                "data": []
+            }
+        }
     }
 }
 ```
 
+##### Index (`GET /api/vi/parents`)
+###### Successful Response
+```
+{
+    "data": [
+        {
+            "id": "3",
+            "type": "parent",
+            "attributes": {
+                "name": "Calvin",
+                "email": "Calvin@example.com"
+            },
+            "relationships": {
+                "users": {
+                    "data": [
+                        {
+                            "id": "5",
+                            "type": "user"
+                        },
+                        {
+                            "id": "6",
+                            "type": "user"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "4",
+            "type": "parent",
+            "attributes": {
+                "name": "Hobbes",
+                "email": "Hobbes@example.com"
+            },
+            "relationships": {
+                "users": {
+                    "data": [
+                        {
+                            "id": "7",
+                            "type": "user"
+                        },
+                        {
+                            "id": "8",
+                            "type": "user"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
+```
+
+##### Show (`GET /api/vi/parents/4`)
+###### Successful Response
+```
+{
+    "data": {
+        "id": "4",
+        "type": "parent",
+        "attributes": {
+            "name": "Hobbes",
+            "email": "Hobbes@example.com"
+        },
+        "relationships": {
+            "users": {
+                "data": [
+                    {
+                        "id": "7",
+                        "type": "user"
+                    },
+                    {
+                        "id": "8",
+                        "type": "user"
+                    }
+                ]
+            }
+        }
+    }
+}
+```
 
 #### Missions
 ##### Create (`POST /api/v1/missions`)
