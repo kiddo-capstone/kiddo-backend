@@ -11,7 +11,5 @@ describe 'user show api' do
     expect(json_response.count).to eq(1)
     expect(json_response[:data][:attributes]).to have_key(:name)
     expect(json_response[:data][:attributes][:name]).to be_a(String)
-    expect(json_response[:data][:attributes]).to have_key(:email)
-    expect(json_response[:data][:attributes][:email]).to be_a(String)
   end
 end

@@ -10,8 +10,6 @@ describe 'user index api' do
     json_response[:data].each do |user|
       expect(user[:attributes]).to have_key(:name)
       expect(user[:attributes][:name]).to be_a(String)
-      expect(user[:attributes]).to have_key(:email)
-      expect(user[:attributes][:email]).to be_a(String)
     end
   end
 end
