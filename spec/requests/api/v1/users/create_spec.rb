@@ -2,8 +2,10 @@ require 'rails_helper'
 
 describe 'user create api' do
   it 'create a user' do
+    parent = create(:parent)
     user = {
-      name: 'Iamaboss'
+      name: 'Iamaboss',
+      parent_id: parent.id
     }
     headers = { 'CONTENT_TYPE' => 'application/json'}
     post '/api/v1/users', headers: headers, params: JSON.generate(user)
@@ -23,8 +25,10 @@ describe 'user create api' do
     expect(body[:data][:errors]).to be_a(String)
   end
   it 'it send back user if user exists' do
+    parent = create(:parent)
     user = {
-      name: 'bubba'
+      name: 'bubba',
+      parent_id: parent.id
     }
     headers = { 'CONTENT_TYPE' => 'application/json'}
     post '/api/v1/users', headers: headers, params: JSON.generate(user)
