@@ -275,7 +275,8 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
 
 ```
 headers: 'CONTENT_TYPE' => 'application/json'
-body: {"name": "John"}
+body: {"name": "John"
+       "parent_id": 4}
 ```
 ###### Successful Response
 ```
