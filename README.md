@@ -241,6 +241,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
             "attributes": {
                 "name": "Calvin",
                 "points": 125
+                "parent_id": 1
             }
         },
         {
@@ -249,6 +250,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
             "attributes": {
                 "name": "Hobbes",
                 points: 421
+                "parent_id": 2
             }
         }
     ]
@@ -265,6 +267,7 @@ Body: { "is_completed" : "true", "message": "Im done!!", "image": "image_file"}
         "attributes": {
             "name": "Calvin",
             "points": 125
+            "parent_id": 4
         }
     }
 }
