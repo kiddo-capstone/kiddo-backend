@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  belongs_to :parent
+  has_many :rewards
   has_many :missions, dependent: :destroy
   has_many :mission_tasks, through: :missions
   has_many :tasks, through: :mission_tasks
