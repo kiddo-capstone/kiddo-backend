@@ -1,5 +1,10 @@
 class Api::V1::RewardsController < ApplicationController
-  
+
+  def index
+    json_create(Reward.where(user_id: params[:user_id])) if params[:user_id]
+    json_create(Reward.where(parent_id: params[:parent_id])) if params[:parent_id]
+  end
+
   def show
     json_create(Reward.find(params[:id]))
   end
