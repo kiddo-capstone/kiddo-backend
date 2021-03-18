@@ -539,8 +539,501 @@ body: {"name":"test", "description":"testing", "category":"test", "points":3}
 }
 ```
 
-## Schema
+#### Rewards
+##### Create (`POST /api/v1/rewards`)
 
+###### Request Structure
+```
+headers: 'CONTENT_TYPE' => 'application/json'
+body:  {
+      "title": "reward 1",
+      "points_to_redeem": 30,
+      "parent_id": 6,
+      "user_id": 10
+    }
+```
+
+###### Successful Response
+```
+{
+    "data": {
+        "id": "21",
+        "type": "reward",
+        "attributes": {
+            "title": "reward 1",
+            "description": null,
+            "points_to_redeem": 30,
+            "redeemed": false
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "10",
+                    "type": "user"
+                }
+            },
+            "parent": {
+                "data": {
+                    "id": "6",
+                    "type": "parent"
+                }
+            }
+        }
+    }
+}
+```
+###### Unsuccessful Response
+```
+{
+    "data": {
+        "errors": "Parent must exist",
+        "status": 400
+    }
+}
+```
+##### Index (`GET /api/v1/rewards`)
+##### Query Parameters -> user_id or parent_id - finds all rewards belonging to whichever parameter is sent in.
+
+###### Successful Response
+```
+GET http://localhost:3000/api/v1/rewards?parent_id=6
+
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "reward",
+            "attributes": {
+                "title": "Pizza Night",
+                "description": "pizza for dinner",
+                "points_to_redeem": 30,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "9",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2",
+            "type": "reward",
+            "attributes": {
+                "title": "Candy Pick",
+                "description": "choose a candy bar",
+                "points_to_redeem": 15,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "9",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "3",
+            "type": "reward",
+            "attributes": {
+                "title": "Video Game Night",
+                "description": "1 hour to play video games",
+                "points_to_redeem": 30,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "9",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "4",
+            "type": "reward",
+            "attributes": {
+                "title": "Basket Ball Hoop",
+                "description": "Get that B-ball hoop for the driveway",
+                "points_to_redeem": 100,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "9",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "5",
+            "type": "reward",
+            "attributes": {
+                "title": "Karate Lessons",
+                "description": "Kung Foo!",
+                "points_to_redeem": 60,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "9",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "6",
+            "type": "reward",
+            "attributes": {
+                "title": "Pizza Night",
+                "description": "pizza for dinner",
+                "points_to_redeem": 30,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "7",
+            "type": "reward",
+            "attributes": {
+                "title": "Candy Pick",
+                "description": "choose a candy bar",
+                "points_to_redeem": 15,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "8",
+            "type": "reward",
+            "attributes": {
+                "title": "Video Game Night",
+                "description": "1 hour to play video games",
+                "points_to_redeem": 30,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "9",
+            "type": "reward",
+            "attributes": {
+                "title": "New Doll House",
+                "description": "Because 10 is not enough!",
+                "points_to_redeem": 100,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "10",
+            "type": "reward",
+            "attributes": {
+                "title": "Horse Riding Lessons",
+                "description": "Horay for horses!",
+                "points_to_redeem": 100,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        },
+        {
+            "id": "21",
+            "type": "reward",
+            "attributes": {
+                "title": "reward 1",
+                "description": null,
+                "points_to_redeem": 30,
+                "redeemed": false
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": "10",
+                        "type": "user"
+                    }
+                },
+                "parent": {
+                    "data": {
+                        "id": "6",
+                        "type": "parent"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+##### Show (`GET /api/v1/rewards/{reward_id}`)
+###### Successful Response
+```
+{
+    "data": {
+        "id": "4",
+        "type": "reward",
+        "attributes": {
+            "title": "Basket Ball Hoop",
+            "description": "Get that B-ball hoop for the driveway",
+            "points_to_redeem": 100,
+            "redeemed": false
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "9",
+                    "type": "user"
+                }
+            },
+            "parent": {
+                "data": {
+                    "id": "6",
+                    "type": "parent"
+                }
+            }
+        }
+    }
+}
+```
+##### Update (`PATCH /api/v1/rewards/{reward_id}`)
+###### Request Structure
+```
+headers: 'CONTENT_TYPE' => 'application/json'
+body:  {
+      "title": "Basket Ball Hoops",
+      "points_to_redeem": 25,
+      "redeemed": true,
+    }
+```
+
+###### Successful Response
+```
+{
+    "data": {
+        "id": "4",
+        "type": "reward",
+        "attributes": {
+            "title": "reward 2",
+            "description": "Get that B-ball hoop for the driveway",
+            "points_to_redeem": 25,
+            "redeemed": true
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "9",
+                    "type": "user"
+                }
+            },
+            "parent": {
+                "data": {
+                    "id": "6",
+                    "type": "parent"
+                }
+            }
+        }
+    }
+}
+```
+
+###### Unsuccessful Response
+```
+{
+    "data": {
+        "errors": "Title can't be blank",
+        "status": "bad_request"
+    }
+}
+```
+
+## Schema
+```
+create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "mission_tasks", force: :cascade do |t|
+    t.bigint "mission_id"
+    t.bigint "task_id"
+    t.string "message"
+    t.string "image_path"
+    t.boolean "is_completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mission_id"], name: "index_mission_tasks_on_mission_id"
+    t.index ["task_id"], name: "index_mission_tasks_on_task_id"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "name"
+    t.date "due_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_missions_on_user_id"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rewards", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "points_to_redeem"
+    t.boolean "redeemed"
+    t.bigint "user_id"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_rewards_on_parent_id"
+    t.index ["user_id"], name: "index_rewards_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "category"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "photo"
+    t.string "resource_link"
+    t.string "resource_alt"
+    t.string "resource_type"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "points"
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_users_on_parent_id"
+  end
+```
 
 ## Contributors
 
