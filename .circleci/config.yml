@@ -71,8 +71,9 @@ jobs: # a collection of steps
           command: |
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/main
-              heroku run rake db:migrate VERSION=0
-              heroku run rake db:migrate db:seed
+              heroku run rails db:migrate VERSION=0
+              heroku run rails db:migrate 
+              heroku run rails db:seed
             fi
 
 workflows:
