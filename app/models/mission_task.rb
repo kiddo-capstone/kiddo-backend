@@ -16,7 +16,7 @@ class MissionTask < ApplicationRecord
     user = mission.user
     task_pts = task.points
     user_points = user.points
-    if new_is_completed 
+    if new_is_completed
       user.update(points: user_points + task_pts)
     else
       user.update(points: user_points - task_pts)

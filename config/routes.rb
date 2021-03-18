@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :missions
       resources :mission_tasks
       resources :parents
+      resources :rewards
 
       get 'users/:id/stats', to: 'users#stats'
       get 'missions/:id/tasks', to: 'mission_tasks#index'

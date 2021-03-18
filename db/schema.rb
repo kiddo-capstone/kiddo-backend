@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 12) do
+ActiveRecord::Schema.define(version: 13) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 12) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rewards", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "points_to_redeem"
+    t.boolean "redeemed"
+    t.bigint "user_id"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_rewards_on_parent_id"
+    t.index ["user_id"], name: "index_rewards_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -90,5 +103,7 @@ ActiveRecord::Schema.define(version: 12) do
   add_foreign_key "mission_tasks", "missions"
   add_foreign_key "mission_tasks", "tasks"
   add_foreign_key "missions", "users"
+  add_foreign_key "rewards", "parents"
+  add_foreign_key "rewards", "users"
   add_foreign_key "users", "parents"
 end
