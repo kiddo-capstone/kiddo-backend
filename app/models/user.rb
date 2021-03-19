@@ -11,6 +11,11 @@ class User < ApplicationRecord
     self.points = 0 if points.nil?
   end
 
+  def update_points(points_redeemed)
+    self.points -= points_redeemed if points_redeemed < self.points
+    self.save
+  end
+
   def user_stats
     sql = <<-SQL
       select total.user_id, total.category, total.total_tasks, coalesce(completed.completed_tasks,0) completed_tasks, total.total_points, coalesce(completed.completed_points,0) completed_points

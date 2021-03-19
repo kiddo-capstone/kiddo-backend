@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'reward create api' do
   before :each do
     @parent = create(:parent)
-    @user = create(:user)
+    @user = create(:user, points: 50)
   end
 
   it 'create a reward' do
@@ -130,6 +130,29 @@ describe 'reward create api' do
     body = JSON.parse(response.body, symbolize_names: true)
     expect(body[:data]).to have_key(:errors)
     expect(body[:data][:errors]).to eq("Points to redeem is not a number")
+  end
+
+
+  it 'can update a reward points' do
+    user = create(:user, points: 50)
+
+    reward = {
+      title: 'reward 1',
+      points_to_redeem: 25,
+      parent_id: @parent.id,
+      user_id: user.id
+    }
+    reward_params = {
+      redeemed: true
+    }
+
+    headers = { 'CONTENT_TYPE' => 'application/json'}
+    post '/api/v1/rewards', headers: headers, params: JSON.generate(reward)
+    updated_reward = Reward.last
+
+    patch api_v1_reward_path(updated_reward.id), headers: headers, params: JSON.generate(reward_params)
+    user.reload
+    expect(user.points).to eq(25)
   end
 
 end

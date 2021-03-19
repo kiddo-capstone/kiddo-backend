@@ -78,6 +78,16 @@ RSpec.describe User, type: :model do
       expect(@user.points).to eq(0)
     end
 
+    it 'update_points' do
+      @user.points = 50
+      @user.save
+      @user.update_points(30)
+      expect(@user.points).to eq(20)
+      @user.update_points(50)
+      expect(@user.points).to_not eq(-30)
+      expect(@user.points).to eq(20)
+    end
+
     it 'user_stats' do
       stats = User.find_by(id: @user.id).user_stats
       arr_stats = stats.to_a
