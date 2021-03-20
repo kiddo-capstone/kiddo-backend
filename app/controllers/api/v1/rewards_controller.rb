@@ -22,6 +22,7 @@ class Api::V1::RewardsController < ApplicationController
   def update
     reward = Reward.find_by(id: params[:id])
     if reward&.update(reward_params)
+      reward.user.update_points(reward.points_to_redeem) if params[:redeemed] && reward.redeemed
       json_create(reward)
     else
       errors = reward.errors.full_messages.to_sentence
